@@ -1,3 +1,20 @@
+TODO:
+
+rethink Hardware file
+
+rethink the controller stuff
+
+setup RobotState in lieu of Control
+try to make it less monomorphic, and with better ergonomics
+*how* to do this?
+
+DISREGARD ALL READMES, OTHER THAN THIS FILE, AS IRRELEVANT TO THIS SEASON,
+UNTIL ALL FILES HAVE BEEN GONE THROUGH AND UPDATED
+
+END OF OWN README
+
+BEGINNING OF FTC README
+
 ## TeamCode Module
 
 Welcome!
