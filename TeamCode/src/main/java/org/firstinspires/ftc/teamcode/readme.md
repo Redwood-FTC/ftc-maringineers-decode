@@ -7,6 +7,17 @@ rethink the controller stuff
 setup RobotState in lieu of Control
 try to make it less monomorphic, and with better ergonomics
 *how* to do this?
+different files for different subsystems
+single unifying file storing them all, and providing them as fields
+and probably providing certain somewhat-wrapper methods for overall
+things
+TODO: how to deal with one subsystem needing to access another?
+if the pedropathing subsystem needs access to limelight stuff, what should we
+give it? ideally, take the data, then pass it to the pathing subsystem
+
+for autonomous and teleop opmodes, just have them be wrappers, that
+instantiate Control, and run the opmode, with a few settings? or also have
+some logic in it? ideally not
 
 DISREGARD ALL READMES, OTHER THAN THIS FILE, AS IRRELEVANT TO THIS SEASON,
 UNTIL ALL FILES HAVE BEEN GONE THROUGH AND UPDATED
