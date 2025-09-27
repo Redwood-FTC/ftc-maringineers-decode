@@ -35,7 +35,7 @@ public class DriveMode extends LinearOpMode {
                 .servos(hardware)
                 .gamepad(this)
                 .motors(hardware)
-                .hang(control.hang())
+                // .hang(control.hang())
                 .limitSwitches(hardware)
                 .counter()
                 .score(control.score());

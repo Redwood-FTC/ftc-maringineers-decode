@@ -21,7 +21,7 @@ public class AutonomousMode extends LinearOpMode {
     HardwareToPosition hardware;
     Tel tel;
     Drive drive;
-    Hang hang;
+    // Hang hang;
     Score score;
     Layout layout;
     Pickup pickup;
@@ -41,11 +41,11 @@ public class AutonomousMode extends LinearOpMode {
         hardware = new HardwareToPosition(this);
         //doing nothing here, just go straight to runActive
         drive = new Drive(hardware);
-        hang = new Hang(hardware);
+        // hang = new Hang(hardware);
         score = new Score(hardware);
         pickup = new Pickup(hardware, telemetry);
-        tel = new Tel(telemetry).servos(hardware).gamepad(this).motors(hardware)
-                .hang(hang).limitSwitches(hardware).counter().score(score);
+        // tel = new Tel(telemetry).servos(hardware).gamepad(this).motors(hardware)
+        //         .hang(hang).limitSwitches(hardware).counter().score(score);
         layout = new Default(this);
 
         waitForStart();

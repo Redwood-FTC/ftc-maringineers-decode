@@ -25,7 +25,7 @@ public class Control {
     private Hardware hardware;
     private Pickup pickup;
     private Score score;
-    private Hang hang;
+    // private Hang hang;
     private Gamepad gamepad;
 
     private Mode mode = Mode.Wall;
@@ -49,14 +49,14 @@ public class Control {
         this.hardware = hardware;
         this.telemetry = telemetry;
         this.gamepad = gamepad;
-        hang = new Hang(hardware);
+        // hang = new Hang(hardware);
         score = new Score(hardware);
         pickup = new Pickup(hardware, telemetry);
     }
 
-    public Hang hang() {
-        return hang;
-    }
+    // public Hang hang() {
+    //     return hang;
+    // }
 
     public Score score() {
         return score;
@@ -112,7 +112,7 @@ public class Control {
             bucketPressed = false;
         }
         if (gamepad.y && !bucketPressed) {
-            mode = Mode.Hang;
+            // mode = Mode.Hang;
             bucketPressed = true;
         } else if (bucketPressed && !gamepad.y) {
             bucketPressed = false;
@@ -250,10 +250,10 @@ public class Control {
             }
 
                 break;
-            case Hang:
-                score.ejectSpecimen(false);
-                hang.moveArms(Math.pow(gamepad.right_trigger - gamepad.left_trigger, 3), Math.pow(gamepad.right_stick_y, 3));
-                break;
+            // case Hang:
+            //     score.ejectSpecimen(false);
+            //     hang.moveArms(Math.pow(gamepad.right_trigger - gamepad.left_trigger, 3), Math.pow(gamepad.right_stick_y, 3));
+            //     break;
         }
             telemetry.addData("pickup position: ", pickup.getPosition());
     }

@@ -8,7 +8,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Tel {
     private Hardware hardware;
-    private Hang hang;
+    // private Hang hang;
     private LinearOpMode opmode;
     private Score score;
     private long counter = 0;
@@ -33,13 +33,13 @@ public class Tel {
         // TODO: order
         if (printServos) {
             // TODO: print "servos:" before this, and etc for the rest
-            telemetry.addData("left hang servo: ", hardware.servos.leftHangServo.getPosition());
-            telemetry.addData("right hang servo: ", hardware.servos.rightHangServo.getPosition());
+            // telemetry.addData("left hang servo: ", hardware.servos.leftHangServo.getPosition());
+            // telemetry.addData("right hang servo: ", hardware.servos.rightHangServo.getPosition());
             telemetry.addData("bucket servo position: ", hardware.servos.bucketServo.getPosition());
             telemetry.addData("pickup base servo position: ", hardware.servos.pickupBaseServo.getPosition());
             telemetry.addData("pickup shoulder servo position: ", hardware.servos.pickupShoulderServo.getPosition());
-            telemetry.addData("left hang servo position: ", hardware.servos.leftHangServo.getPosition());
-            telemetry.addData("right hang servo position: ", hardware.servos.rightHangServo.getPosition());
+            // telemetry.addData("left hang servo position: ", hardware.servos.leftHangServo.getPosition());
+            // telemetry.addData("right hang servo position: ", hardware.servos.rightHangServo.getPosition());
         }
         if (printMotors) {
             telemetry.addData("score arm motor position: ", hardware.motors.scoreMotor.getCurrentPosition());
@@ -52,10 +52,10 @@ public class Tel {
 
             telemetry.addData("pickup motor target position: ", hardware.motors.pickupMotor.getTargetPosition());
         }
-        if (printHang) {
-            telemetry.addData("angle amount: ", hang.angleAmount());
-            telemetry.addData("extend amount: ", hang.extendAmount());
-        }
+        // if (printHang) {
+        //     telemetry.addData("angle amount: ", hang.angleAmount());
+        //     telemetry.addData("extend amount: ", hang.extendAmount());
+        // }
         if (printLimitSwitches) {
             telemetry.addData("score arm limit switch activated: ", hardware.scoreArmLimitSensor.isPressed());
             telemetry.addData("pickup arm limit switch activated: ", hardware.pickupArmLimitSensor.isPressed());
@@ -92,11 +92,11 @@ public class Tel {
         return this;
     }
 
-    public Tel hang(Hang hang) {
-        this.hang = hang;
-        printHang = true;
-        return this;
-    }
+    // public Tel hang(Hang hang) {
+    //     this.hang = hang;
+    //     printHang = true;
+    //     return this;
+    // }
 
     public Tel gamepad(LinearOpMode opmode) {
         this.opmode = opmode;
