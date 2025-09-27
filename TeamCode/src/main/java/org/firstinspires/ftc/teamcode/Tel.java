@@ -6,21 +6,24 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+// control the printing of telemetry in a centralized class
+// instead of having the caller decide which to be printed.....
+// just edit the variables here
+// motivation:
+// it'll always require a recompile anyways, and this way is not
+// only less boilerplate, but also, it's being controlled from the same place
+// as where it's defined
+
 public class Tel {
     private Hardware hardware;
     // private Hang hang;
     private LinearOpMode opmode;
-    private Score score;
-    private long counter = 0;
     private Telemetry telemetry;
 
     private boolean printServos = false;
     private boolean printGamepad = false;
-    private boolean printMotors = false;
-    private boolean printHang = false;
+    private boolean printMotors = true;
     private boolean printLimitSwitches = false;
-    private boolean printCounter = false;
-    private boolean printScore = false;
     private boolean printLimelight = false;
 
     // we can't call it telemetry, so tel's an ok alternative
@@ -29,100 +32,36 @@ public class Tel {
         this.telemetry = telemetry;
     }
 
+    // for when it's necessary to print stuff that depends on control flow
+    // etc. (which would ideally be temporary during troubleshooting)
+    // ALTERNATIVELY: expose a function for the caller to add a line, that
+    // we then actually pass to Telemetry --- though, them calling it
+    // is probably fine, as long as this.update() is always called
+    // after everything else in the main loop
+    public Telemetry telemetry() {
+        return telemetry;
+    }
+
     public void update() {
         // TODO: order
         if (printServos) {
-            // TODO: print "servos:" before this, and etc for the rest
-            // telemetry.addData("left hang servo: ", hardware.servos.leftHangServo.getPosition());
-            // telemetry.addData("right hang servo: ", hardware.servos.rightHangServo.getPosition());
-            telemetry.addData("bucket servo position: ", hardware.servos.bucketServo.getPosition());
-            telemetry.addData("pickup base servo position: ", hardware.servos.pickupBaseServo.getPosition());
-            telemetry.addData("pickup shoulder servo position: ", hardware.servos.pickupShoulderServo.getPosition());
-            // telemetry.addData("left hang servo position: ", hardware.servos.leftHangServo.getPosition());
-            // telemetry.addData("right hang servo position: ", hardware.servos.rightHangServo.getPosition());
+            telemetry.addLine("SERVOS:");
         }
         if (printMotors) {
-            telemetry.addData("score arm motor position: ", hardware.motors.scoreMotor.getCurrentPosition());
-
-            telemetry.addData("pickup arm motor position: ", hardware.motors.pickupMotor.getCurrentPosition());
-
-            telemetry.addData("score arm power: ", hardware.motors.scoreMotor.getPower());
-            telemetry.addData("score arm motor target position: ", hardware.motors.scoreMotor.getTargetPosition());
-
-
-            telemetry.addData("pickup motor target position: ", hardware.motors.pickupMotor.getTargetPosition());
+            telemetry.addLine("\nMOTORS:");
         }
-        // if (printHang) {
-        //     telemetry.addData("angle amount: ", hang.angleAmount());
-        //     telemetry.addData("extend amount: ", hang.extendAmount());
-        // }
         if (printLimitSwitches) {
-            telemetry.addData("score arm limit switch activated: ", hardware.scoreArmLimitSensor.isPressed());
-            telemetry.addData("pickup arm limit switch activated: ", hardware.pickupArmLimitSensor.isPressed());
-            telemetry.addData("left hang limit switch activated: ", hardware.leftHangArmLimitSensor.isPressed());
-            telemetry.addData("right hang arm limit switch activated: ", hardware.rightHangArmLimitSensor.isPressed());
-        }
-        if (printCounter) {
-            telemetry.addData("counter", counter);
+            telemetry.addLine("\nLIMIT SWITCHES:");
         }
         if (printGamepad) {
+            telemetry.addLine("\nGAMEPAD:");
             telemetry.addData("right stick x amount: ", opmode.gamepad1.right_stick_x);
             telemetry.addData("right stick y amount: ", opmode.gamepad1.right_stick_y);
         }
-        if (printScore) {
-            telemetry.addData("score position: ", score.position());
-            telemetry.addData("scoreClawArmPressed: ", score.scoreClawArmPressed());
-            telemetry.addData("deliverHigh: ", score.deliverHigh());
-        }
         if (printLimelight) {
-
+            telemetry.addLine("\nLIMELIGHT:");
         }
+
         telemetry.update();
-    }
-
-    public Tel servos(Hardware hardware) {
-        this.hardware = hardware;
-        printServos = true;
-        return this;
-    }
-
-    public Tel motors(Hardware hardware) {
-        this.hardware = hardware;
-        printMotors = true;
-        return this;
-    }
-
-    // public Tel hang(Hang hang) {
-    //     this.hang = hang;
-    //     printHang = true;
-    //     return this;
-    // }
-
-    public Tel gamepad(LinearOpMode opmode) {
-        this.opmode = opmode;
-        printGamepad = true;
-        return this;
-    }
-
-    public Tel limitSwitches(Hardware hardware) {
-        this.hardware = hardware;
-        printLimitSwitches = true;
-        return this;
-    }
-
-    public Tel counter() {
-        printCounter = true;
-        return this;
-    }
-
-    public Tel score(Score score) {
-        this.score = score;
-        printScore = true;
-        return this;
-    }
-
-    public Tel limelight() {
-        printLimelight = true;
-        return this;
     }
 }
