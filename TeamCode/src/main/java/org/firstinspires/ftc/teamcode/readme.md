@@ -1,15 +1,18 @@
-TODO:
+structure of repository:
+autonomousmode and drivemode are wrappers, just passing off control to more
+specific files
 
-rethink Hardware file
 
-rethink the controller stuff
+it's possible a few old comments remain, but for the most part, all code
+present has been reviewed, and any comments are relevent to specifically
+this season
 
-setup RobotState in lieu of Control
-try to make it less monomorphic, and with better ergonomics
-*how* to do this?
 
-DISREGARD ALL READMES, OTHER THAN THIS FILE, AS IRRELEVANT TO THIS SEASON,
-UNTIL ALL FILES HAVE BEEN GONE THROUGH AND UPDATED
+
+TODO: where *exactly* does the autonomous control mode go? Control?
+potentially two classes, for tele and auto control? or two sub or super classes
+TODO: for now, just have control, later on, once we have a decent amount of
+code for both, decide how we want to split it
 
 END OF OWN README
 

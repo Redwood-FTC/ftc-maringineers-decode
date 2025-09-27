@@ -17,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Tel {
     private Hardware hardware;
     // private Hang hang;
-    private LinearOpMode opmode;
+    private LinearOpMode opMode;
     private Telemetry telemetry;
 
     private boolean printServos = false;
@@ -27,9 +27,10 @@ public class Tel {
     private boolean printLimelight = false;
 
     // we can't call it telemetry, so tel's an ok alternative
-    // this is just a pretty simlpe builder-like class
-    public Tel(Telemetry telemetry) {
-        this.telemetry = telemetry;
+    public Tel(LinearOpMode opMode, Hardware hardware) {
+        this.opMode = opMode;
+        this.hardware = hardware;
+        this.telemetry = opMode.telemetry;
     }
 
     // for when it's necessary to print stuff that depends on control flow
@@ -55,8 +56,8 @@ public class Tel {
         }
         if (printGamepad) {
             telemetry.addLine("\nGAMEPAD:");
-            telemetry.addData("right stick x amount: ", opmode.gamepad1.right_stick_x);
-            telemetry.addData("right stick y amount: ", opmode.gamepad1.right_stick_y);
+            telemetry.addData("right stick x amount: ", opMode.gamepad1.right_stick_x);
+            telemetry.addData("right stick y amount: ", opMode.gamepad1.right_stick_y);
         }
         if (printLimelight) {
             telemetry.addLine("\nLIMELIGHT:");

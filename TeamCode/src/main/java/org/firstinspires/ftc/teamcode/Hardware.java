@@ -21,6 +21,8 @@ import java.util.Arrays;
 // also, code reuse, if necessary
 
 public class Hardware {
+    LinearOpMode opMode;
+
         public DcMotorEx leftFrontDriveMotor;
         public DcMotorEx leftRearDriveMotor;
         public DcMotorEx rightFrontDriveMotor;
