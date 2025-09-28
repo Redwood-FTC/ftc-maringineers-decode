@@ -36,5 +36,7 @@ public class Control {
         drive.stopRobot();
     }
 
-    public void update() {}
+    public void update() {
+        drive.moveRobot(layout.driveForwardAmount(), layout.driveStrafeAmount(), layout.driveYawAmount());
+    }
 }
