@@ -11,12 +11,19 @@
 
 // Custom definitions may go here
 
+
 // Include common definitions from above.
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
+
+    // panels
+    compileSdk 35
+    defaultConfig {
+        minSdk 24
+    }
 
     packagingOptions {
         jniLibs.useLegacyPackaging true
@@ -25,4 +32,7 @@ android {
 
 dependencies {
     implementation project(':FtcRobotController')
+
+    // panels
+    implementation "com.bylazar:fullpanels:1.0.6"
 }

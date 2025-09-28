@@ -21,6 +21,11 @@ allprojects {
     repositories {
         mavenCentral()
         google()
+
+        // for panels
+        maven {
+            url = "https://mymaven.bylazar.com/releases"
+        }
     }
 }
 
