@@ -24,6 +24,7 @@ public class Tel {
     private boolean printGamepad = false;
     private boolean printMotors = true;
     private boolean printLimitSwitches = false;
+    private boolean printPedroPathing = true;
     private boolean printLimelight = false;
 
     // we can't call it telemetry, so tel's an ok alternative
@@ -43,6 +44,7 @@ public class Tel {
         return telemetry;
     }
 
+    // TODO: we'll be using panels for this, so just set up this with panels
     public void update() {
         // TODO: order
         if (printServos) {
@@ -58,6 +60,9 @@ public class Tel {
             telemetry.addLine("\nGAMEPAD:");
             telemetry.addData("right stick x amount: ", opMode.gamepad1.right_stick_x);
             telemetry.addData("right stick y amount: ", opMode.gamepad1.right_stick_y);
+        }
+        if (printPedroPathing) {
+            telemetry.addLine("\nPEDROPATHING:");
         }
         if (printLimelight) {
             telemetry.addLine("\nLIMELIGHT:");

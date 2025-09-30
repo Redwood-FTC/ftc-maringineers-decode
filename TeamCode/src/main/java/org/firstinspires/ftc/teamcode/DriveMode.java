@@ -22,6 +22,7 @@ public class DriveMode extends LinearOpMode {
         }
 
         while (this.opModeIsActive()) {
+        control.initTeleOp();
         runActive();
         }
 

@@ -20,7 +20,8 @@ public class Constants {
         .leftFrontMotorName("leftFrontDriveMotor")
         .leftRearMotorName("leftRearDriveMotor")
         .rightFrontMotorName("rightFrontDriveMotor")
-        .rightRearMotorName("rightRearDriveMotor");
+        .rightRearMotorName("rightRearDriveMotor")
+        .useBrakeModeInTeleOp(true);
         // possibly redundant?
         // .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
         // .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
@@ -35,20 +36,24 @@ public class Constants {
     private static double TurnTicksToInchesMultiplier = .010444;
 
     // TODO: once we have deadwheels
-    // public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
-    //         .forwardTicksToInches(.001989436789)
-    //         .strafeTicksToInches(.001989436789)
-    //         .turnTicksToInches(.001989436789)
+    // public static ThreeWheelIMUConstants localizerConstants = new ThreeWheelIMUConstants()
+    //         .forwardTicksToInches(ForwardTicksToInchesMultiplier)
+    //         .strafeTicksToInches(StrafeTicksToInchesMultiplier)
+    //         .turnTicksToInches(TurnTicksToInchesMultiplier)
     //         .leftPodY(1)
     //         .rightPodY(-1)
     //         .strafePodX(-2.5)
+    // TODO: left/right pods should be in motor encoder ports 0 and 3
+    // 1 or 2 for the strafe encoder
     //         .leftEncoder_HardwareMapName("leftFront")
     //         .rightEncoder_HardwareMapName("rightRear")
     //         .strafeEncoder_HardwareMapName("rightFront")
     //         .leftEncoderDirection(Encoder.FORWARD)
     //         .rightEncoderDirection(Encoder.FORWARD)
-    //         .strafeEncoderDirection(Encoder.FORWARD);
-
+    //         .strafeEncoderDirection(Encoder.FORWARD)
+    //         .IMU_HardwareMapName("imu")
+    //         .IMU_Orientation(new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.UP, RevHubOrientationOnRobot.UsbFacingDirection.LEFT));
+    
     // TODO: only use until we have deadwheels
     public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
         .leftFrontMotorName("leftFrontDriveMotor")
@@ -72,6 +77,7 @@ public class Constants {
         return new FollowerBuilder(followerConstants, hardwareMap)
                 .pathConstraints(pathConstraints)
                 .driveEncoderLocalizer(localizerConstants)
+                // .threeWheelIMULocalizer(localizerConstants)
                 .mecanumDrivetrain(driveConstants)
                 .build();
     }
