@@ -50,6 +50,7 @@ public class Control {
         // TODO: prev.
         follower.setStartingPose(new Pose());
         follower.update();
+        follower.startTeleopDrive();
         telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
     }
 
@@ -60,7 +61,7 @@ public class Control {
     // TODO: WHAT'S THE DISTINCTION BETWEEN TELEOP AND AUTO FOR THIS CLASS
     // TODO: use opmode instead of linearopmode
     public void initTeleOp() {
-        follower.startTeleopDrive();
+        // follower.startTeleopDrive();
     }
 
     public void update() {

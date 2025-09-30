@@ -16,11 +16,11 @@ public class Layout {
 
     // TODO: turn this, so it feels better
     public double driveForwardAmount() {
-        return Math.pow(gamepad1.left_stick_y, 3);
+        return -Math.pow(gamepad1.left_stick_y, 3);
     }
 
     public double driveStrafeAmount() {
-        return Math.pow(gamepad1.left_stick_x, 3);
+        return -Math.pow(gamepad1.left_stick_x, 3);
     }
 
     // use triggers for rotation, so right stick can be used for scoring/hanging;
