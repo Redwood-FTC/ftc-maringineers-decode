@@ -23,6 +23,7 @@ public class Control {
     private Drive drive;
     private Tel tel;
     private LinearOpMode opMode;
+    private LimeLight limeLight;
 
     private Follower follower;
     private TelemetryManager telemetryM;
@@ -37,6 +38,7 @@ public class Control {
         hardware = new Hardware(opMode);
         drive = new Drive(hardware);
         tel = new Tel(opMode, hardware);
+        limeLight = new LimeLight(opMode, hardware);
 
         tel.update();
 
