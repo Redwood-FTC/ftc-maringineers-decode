@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -17,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class Tel {
     private Hardware hardware;
     // private Hang hang;
-    private LinearOpMode opMode;
+    private OpMode opMode;
     private Telemetry telemetry;
 
     private boolean printServos = false;
@@ -28,7 +29,7 @@ public class Tel {
     private boolean printLimelight = false;
 
     // we can't call it telemetry, so tel's an ok alternative
-    public Tel(LinearOpMode opMode, Hardware hardware) {
+    public Tel(OpMode opMode, Hardware hardware) {
         this.opMode = opMode;
         this.hardware = hardware;
         this.telemetry = opMode.telemetry;

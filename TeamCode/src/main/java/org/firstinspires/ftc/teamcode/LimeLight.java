@@ -1,22 +1,26 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
 // code for controlling limelight
 public class LimeLight {
-    private LinearOpMode opMode;
+    private OpMode opMode;
     private Hardware hardware;
 
 
-    public LimeLight(LinearOpMode opMode, Hardware hardware) {
+    public LimeLight(OpMode opMode, Hardware hardware) {
         this.opMode = opMode;
         this.hardware = hardware;
 
-        hardware.limelight.pipelineSwitch(0);
+        // hardware.limeLight.pipelineSwitch(0);
     }
 
     public void update() {
-        LLResult result = hardware.limelight.getLatestResult();
-        if (result != null && result.isValid()) {
-            // TODO
-        }
+        // LLResult result = hardware.limeLight.getLatestResult();
+        // if (result != null && result.isValid()) {
+        //     // TODO
+        // }
     }
 }

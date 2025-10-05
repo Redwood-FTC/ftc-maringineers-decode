@@ -5,6 +5,7 @@ import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -22,61 +23,52 @@ public class Control {
     private Hardware hardware;
     private Drive drive;
     private Tel tel;
-    private LinearOpMode opMode;
+    private OpMode opMode;
     private LimeLight limeLight;
 
-    private Follower follower;
     private TelemetryManager telemetryM;
+
+    private boolean started = false;
 
     // TODO: probably have something like last year, with a Pickup mode,
     // for intaking, and a Launch mode, for which the front of the robot
     // is reversed
 
-    public Control(LinearOpMode opMode) {
+    public Control(OpMode opMode) {
         this.opMode = opMode;
         layout = new Layout(opMode);
         hardware = new Hardware(opMode);
-        drive = new Drive(hardware);
+        drive = new Drive(opMode, hardware, layout);
         tel = new Tel(opMode, hardware);
-        limeLight = new LimeLight(opMode, hardware);
+        // TODO
+        // limeLight = new LimeLight(opMode, hardware);
 
-        tel.update();
-
-        follower = Constants.createFollower(opMode.hardwareMap);
-        // TODO: set it with limelight if possible, else default)
-        // just loop in int, trying to find it, and if not found,
-        // set it to new here?
-        // or have them set the startingposition manually if limelight can't
-        // find it
-        // (and also let them disable limit switches, etc.)
-        // TODO: prev.
-        follower.setStartingPose(new Pose());
-        follower.update();
-        follower.startTeleopDrive();
         telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
+
+        update();
+    }
+
+    public void start() {
+        started = true;
     }
 
     public void stop() {
         drive.stopRobot();
     }
 
-    // TODO: WHAT'S THE DISTINCTION BETWEEN TELEOP AND AUTO FOR THIS CLASS
-    // TODO: use opmode instead of linearopmode
-    public void initTeleOp() {
-        // follower.startTeleopDrive();
-    }
-
     public void update() {
-        follower.update();
+
+        drive.update();
         telemetryM.update();
+        tel.update();
 
-        // TODO: test robot vs field centric
-        follower.setTeleOpDrive(layout.driveForwardAmount(), layout.driveStrafeAmount(), layout.driveYawAmount(), true);
-        // follower.setTeleOpDrive(-gamepad1.left_stick_y,-gamepad1.left_stick_x,-gamepad1.right_stick_x,true);
-        // drive.moveRobot(layout.driveForwardAmount(), layout.driveStrafeAmount(), layout.driveYawAmount());
+        if (started) {
+            run();
+        }
 
-        telemetryM.debug("position", follower.getPose());
-        telemetryM.debug("velocity", follower.getVelocity());
+        // // TODO: move to tel
+        // telemetryM.debug("position", follower.getPose());
+        // telemetryM.debug("velocity", follower.getVelocity());
 
         telemetryM.debug("right stick x amount", opMode.gamepad1.right_stick_x);
         telemetryM.debug("right stick y amount", opMode.gamepad1.right_stick_y);
@@ -84,5 +76,9 @@ public class Control {
         telemetryM.debug("driveForwardAmount", layout.driveForwardAmount());
         telemetryM.debug("driveStrafeAmount", layout.driveStrafeAmount());
         telemetryM.debug("driveYawAmount", layout.driveYawAmount());
+    }
+
+    private void run() {
+        drive.gamepadDrive();
     }
 }

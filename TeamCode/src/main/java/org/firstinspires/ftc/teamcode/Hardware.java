@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -21,19 +22,31 @@ import java.util.Arrays;
 // also, code reuse, if necessary
 
 public class Hardware {
-    LinearOpMode opMode;
+    private OpMode opMode;
+    public DcMotorEx leftFrontDriveMotor;
+    public DcMotorEx leftRearDriveMotor;
+    public DcMotorEx rightFrontDriveMotor;
+    public DcMotorEx rightRearDriveMotor;
+    public LimeLight limeLight;
 
-        public DcMotorEx leftFrontDriveMotor;
-        public DcMotorEx leftRearDriveMotor;
-        public DcMotorEx rightFrontDriveMotor;
-        public DcMotorEx rightRearDriveMotor;
-
-    public Hardware(LinearOpMode opMode) {
+    public Hardware(OpMode opMode) {
         this.opMode = opMode;
-        initMotors(opMode);
+    
+    // MAKE MORE FUNCTIONS AS NEEDED, DO NOT PUT SPECIFIC INITIALIZATION IN
+    // THE CONSTRUCTOR ITSELF, OR IN ANY OTHER CLASS
+        initServos();
+        initEncoders();
+        initMotors();
     }
 
-    private void initMotors(LinearOpMode opMode) {
+
+    private void initServos() {
+    }
+
+    private void initEncoders() {
+    }
+
+    private void initMotors() {
             leftFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftFrontDriveMotor");
             leftRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftRearDriveMotor");
             rightFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightFrontDriveMotor");

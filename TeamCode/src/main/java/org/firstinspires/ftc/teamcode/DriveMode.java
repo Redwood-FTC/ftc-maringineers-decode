@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 // the primary drive mode file
@@ -11,42 +12,30 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 // ideally Control I think, since auto will need to do the same thing
 // TODO: what in the world does 'group' even do
 @TeleOp(name = "Drive Mode", group = "Drive")
-public class DriveMode extends LinearOpMode {
+public class DriveMode extends OpMode {
     private Control control;
-
-    public void runOpMode() throws InterruptedException {
-        initInit();
-
-        while (this.opModeInInit()) {
-        runInit();
-        }
-
-        while (this.opModeIsActive()) {
-        control.initTeleOp();
-        runActive();
-        }
-
-        runDeInit();
-    }
 
     // if runInit is the run for init mode, and initrun is the init for
     // run mode, then initinit is the init for init mode
-    private void initInit() {
+    public void init() {
         control = new Control(this);
     }
 
     // for code that runs CONTINUOUSLY during init --- NOT code that just
     // runs once
-    private void runInit() {
-            // nothing to do
-            waitForStart();
-    }
-
-    private void runActive() {
+    public void init_loop() {
         control.update();
     }
 
-    private void runDeInit() {
+    public void start() {
+        control.start();
+    }
+
+    public void loop() {
+        control.update();
+    }
+
+    public void stop() {
         control.stop();
     }
 }

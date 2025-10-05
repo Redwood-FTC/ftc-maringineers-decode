@@ -1,14 +1,15 @@
 package org.firstinspires.ftc.teamcode.layout;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class Layout {
-    private LinearOpMode opMode;
+    private OpMode opMode;
     private Gamepad gamepad1;
     private Gamepad gamepad2;
 
-    public Layout(LinearOpMode opMode) {
+    public Layout(OpMode opMode) {
         this.opMode = opMode;
         gamepad1 = opMode.gamepad1;
         gamepad2 = opMode.gamepad2;
