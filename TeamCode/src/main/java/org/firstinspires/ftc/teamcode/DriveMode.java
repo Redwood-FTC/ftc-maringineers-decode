@@ -35,7 +35,7 @@ public class DriveMode extends OpMode {
         control.update();
     }
 
-    public void stop() {
+    public void wstop() {
         control.stop();
     }
 }
