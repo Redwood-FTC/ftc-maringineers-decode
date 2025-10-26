@@ -27,6 +27,12 @@ public class Hardware {
     public DcMotorEx leftRearDriveMotor;
     public DcMotorEx rightFrontDriveMotor;
     public DcMotorEx rightRearDriveMotor;
+
+    public DcMotorEx leftLaunchMotor;
+    public DcMotorEx rightLaunchMotor;
+
+    public Servo intakeServo;
+
     public LimeLight limeLight;
 
     public Hardware(OpMode opMode) {
@@ -41,6 +47,15 @@ public class Hardware {
 
 
     private void initServos() {
+        intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
+
+            for (Servo servo : new Servo[] {intakeServo}) {
+                servo.setDirection(Servo.Direction.FORWARD);
+            }
+
+            for (Servo servo : new Servo[] {}) {
+                servo.setDirection(Servo.Direction.REVERSE);
+            }
     }
 
     private void initEncoders() {
@@ -52,19 +67,21 @@ public class Hardware {
             rightFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightFrontDriveMotor");
             rightRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightRearDriveMotor");
 
+            leftLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftLaunchMotor");
+            rightLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightLaunchMotor");
         
             // each side is flipped in comparison to the other, so set the right side to reverse;
             // so that forward on each side is the same
             // TODO: determine what we want for this
-            for (DcMotorEx motor : new DcMotorEx[] {leftFrontDriveMotor, leftRearDriveMotor}) {
+            for (DcMotorEx motor : new DcMotorEx[] {leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor}) {
                 motor.setDirection(DcMotorSimple.Direction.FORWARD);
             }
-            for (DcMotorEx motor : new DcMotorEx[] {rightFrontDriveMotor, rightRearDriveMotor}) {
+            for (DcMotorEx motor : new DcMotorEx[] {rightFrontDriveMotor, rightRearDriveMotor, rightLaunchMotor}) {
                 motor.setDirection(DcMotorSimple.Direction.REVERSE);
             }
 
             for (DcMotorEx motor : new DcMotorEx[] {leftFrontDriveMotor, leftRearDriveMotor, rightFrontDriveMotor,
-                    rightRearDriveMotor}) {
+                    rightRearDriveMotor, leftLaunchMotor, rightLaunchMotor}) {
                 motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             }
             for (DcMotorEx motor : new DcMotorEx[] {}) {

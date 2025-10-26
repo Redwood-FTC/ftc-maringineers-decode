@@ -18,9 +18,9 @@ public class LimeLight {
     }
 
     public void update() {
-        // LLResult result = hardware.limeLight.getLatestResult();
-        // if (result != null && result.isValid()) {
-        //     // TODO
-        // }
+        LLResult result = hardware.limeLight.getLatestResult();
+        if (result != null && result.isValid()) {
+            // TODO
+        }
     }
 }

@@ -25,6 +25,8 @@ public class Control {
     private Tel tel;
     private OpMode opMode;
     private LimeLight limeLight;
+    private Launch launch;
+    private Intake intake;
 
     private TelemetryManager telemetryM;
 
@@ -40,6 +42,8 @@ public class Control {
         hardware = new Hardware(opMode);
         drive = new Drive(opMode, hardware, layout);
         tel = new Tel(opMode, hardware);
+        launch = new Launch(opMode, hardware, layout);
+        intake = new Intake(opMode, hardware, layout);
         // TODO
         // limeLight = new LimeLight(opMode, hardware);
 
@@ -80,5 +84,7 @@ public class Control {
 
     private void run() {
         drive.gamepadDrive();
+        launch.update();
+        intake.update();
     }
 }

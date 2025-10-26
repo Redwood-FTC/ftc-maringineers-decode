@@ -15,6 +15,14 @@ public class Layout {
         gamepad2 = opMode.gamepad2;
     }
 
+    public boolean run_launch() {
+        return gamepad1.a;
+    }
+
+    public boolean run_intake() {
+        return gamepad1.b;
+    }
+
     // TODO: turn this, so it feels better
     public double driveForwardAmount() {
         return -Math.pow(gamepad1.left_stick_y, 3);
