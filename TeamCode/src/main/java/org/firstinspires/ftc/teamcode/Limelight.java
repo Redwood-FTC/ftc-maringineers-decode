@@ -26,10 +26,14 @@ public class Limelight {
     public void update() {
         LLResult result = hardware.limelight.getLatestResult();
         if (result != null && result.isValid()) {
-            // TODO
-
-            // probably save result in field
+            validResult = result;
+        } else {
+            validResult = null;
         }
+    }
+
+    public boolean resultValid() {
+        return resultValid;
     }
 
     /// CAN return null if result not valid

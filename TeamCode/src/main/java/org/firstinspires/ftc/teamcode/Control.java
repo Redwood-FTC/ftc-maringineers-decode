@@ -82,7 +82,9 @@ public class Control {
         telemetryM.debug("driveStrafeAmount", layout.driveStrafeAmount());
         telemetryM.debug("driveYawAmount", layout.driveYawAmount());
 
-        telemetryM.debug("Pose", limelight.pose().toString());
+        if (limelight.resultValid()) {
+            telemetryM.debug("pose", limelight.pose().toString());
+        }
 //        telemetryM.debug("Camera Position y", limelight.pose().toString());
 //        telemetryM.debug("Camera Position z",  limelight.pose().toString());
 //        telemetryM.debug("Camera Orientation", limelight.xxx.toString());
