@@ -24,7 +24,7 @@ public class Control {
     private Drive drive;
     private Tel tel;
     private OpMode opMode;
-    private LimeLight limeLight;
+    private Limelight limelight;
     private Launch launch;
     private Intake intake;
 
@@ -45,7 +45,7 @@ public class Control {
         launch = new Launch(opMode, hardware, layout);
         intake = new Intake(opMode, hardware, layout);
         // TODO
-        limeLight = new LimeLight(opMode, hardware);
+        limelight = new Limelight(opMode, hardware);
 
         telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
 
@@ -65,7 +65,7 @@ public class Control {
         drive.update();
         telemetryM.update();
         tel.update();
-        limeLight.update();
+        limelight.update();
 
         if (started) {
             run();
@@ -82,10 +82,10 @@ public class Control {
         telemetryM.debug("driveStrafeAmount", layout.driveStrafeAmount());
         telemetryM.debug("driveYawAmount", layout.driveYawAmount());
 
-        telemetryM.debug("Pose", limeLight.pose().toString());
-//        telemetryM.debug("Camera Position y", limeLight.pose().toString());
-//        telemetryM.debug("Camera Position z",  limeLight.pose().toString());
-//        telemetryM.debug("Camera Orientation", limeLight.xxx.toString());
+        telemetryM.debug("Pose", limelight.pose().toString());
+//        telemetryM.debug("Camera Position y", limelight.pose().toString());
+//        telemetryM.debug("Camera Position z",  limelight.pose().toString());
+//        telemetryM.debug("Camera Orientation", limelight.xxx.toString());
     }
 
     private void run() {

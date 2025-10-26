@@ -44,10 +44,10 @@ public class Hardware {
         initServos();
         initEncoders();
         initMotors();
-        initLimeLight();
+        initLimelight();
     }
 
-    private void initLimeLight() {
+    private void initLimelight() {
         limelight = opMode.hardwareMap.get(Limelight3A.class, "limelight");
     }
 

@@ -18,11 +18,9 @@ public class Limelight {
         this.hardware = hardware;
 
         hardware.limelight.pipelineSwitch(0);
-        limelight.start();
+        hardware.limelight.start();
 
         // TODO: attempt to find pose during init
-
-        // hardware.limeLight.pipelineSwitch(0);
     }
 
     public void update() {
