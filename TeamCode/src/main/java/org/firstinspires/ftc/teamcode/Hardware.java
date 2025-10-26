@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 
 import java.util.Arrays;
 
@@ -33,7 +34,7 @@ public class Hardware {
 
     public Servo intakeServo;
 
-    public LimeLight limeLight;
+    public Limelight3A limelight;
 
     public Hardware(OpMode opMode) {
         this.opMode = opMode;
@@ -43,6 +44,11 @@ public class Hardware {
         initServos();
         initEncoders();
         initMotors();
+        initLimeLight();
+    }
+
+    private void initLimeLight() {
+        limelight = opMode.hardwareMap.get(Limelight3A.class, "limelight");
     }
 
 
