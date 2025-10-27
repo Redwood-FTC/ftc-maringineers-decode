@@ -1,4 +1,4 @@
-Code for the Maringineers #25830 team in the FTC season DECODE, 2025-2026.
+Code for the Maringineers #25830 team in the FTC 2025-2026 season, DECODE.
 
 Coded by Iris Teyssier, Milo Lee, Ayansh Singh, and Rohan Nagashetti.
 
