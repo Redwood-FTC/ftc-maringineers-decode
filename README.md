@@ -1,5 +1,5 @@
-Maringineers Ftc Decode 2025-2026 code
+Code for the Maringineers #25830 team in the FTC season DECODE, 2025-2026.
 
-see src symlink for source dir
+Coded by Iris Teyssier, Milo Lee, Ayansh Singh, and Rohan Nagashetti.
 
-real readme is src/readme.md
+See src symlink for the source directory. The real readme is at src/readme.md.
