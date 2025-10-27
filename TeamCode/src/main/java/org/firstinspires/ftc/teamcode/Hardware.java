@@ -38,9 +38,9 @@ public class Hardware {
 
     public Hardware(OpMode opMode) {
         this.opMode = opMode;
-    
-    // MAKE MORE FUNCTIONS AS NEEDED, DO NOT PUT SPECIFIC INITIALIZATION IN
-    // THE CONSTRUCTOR ITSELF, OR IN ANY OTHER CLASS
+
+        // MAKE MORE FUNCTIONS AS NEEDED, DO NOT PUT SPECIFIC INITIALIZATION IN
+        // THE CONSTRUCTOR ITSELF, OR IN ANY OTHER CLASS
         initServos();
         initEncoders();
         initMotors();
@@ -55,67 +55,64 @@ public class Hardware {
     private void initServos() {
         intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
 
-            for (Servo servo : new Servo[] {intakeServo}) {
-                servo.setDirection(Servo.Direction.FORWARD);
-            }
+        for (Servo servo : new Servo[]{intakeServo}) {
+            servo.setDirection(Servo.Direction.FORWARD);
+        }
 
-            for (Servo servo : new Servo[] {}) {
-                servo.setDirection(Servo.Direction.REVERSE);
-            }
+        for (Servo servo : new Servo[]{}) {
+            servo.setDirection(Servo.Direction.REVERSE);
+        }
     }
 
     private void initEncoders() {
     }
 
     private void initMotors() {
-            leftFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftFrontDriveMotor");
-            leftRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftRearDriveMotor");
-            rightFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightFrontDriveMotor");
-            rightRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightRearDriveMotor");
+        leftFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftFrontDriveMotor");
+        leftRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftRearDriveMotor");
+        rightFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightFrontDriveMotor");
+        rightRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightRearDriveMotor");
 
-            leftLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftLaunchMotor");
-            rightLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightLaunchMotor");
-        
-            // each side is flipped in comparison to the other, so set the right side to reverse;
-            // so that forward on each side is the same
-            // TODO: determine what we want for this
-            for (DcMotorEx motor : new DcMotorEx[] {leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor}) {
-                motor.setDirection(DcMotorSimple.Direction.FORWARD);
-            }
-            for (DcMotorEx motor : new DcMotorEx[] {rightFrontDriveMotor, rightRearDriveMotor, rightLaunchMotor}) {
-                motor.setDirection(DcMotorSimple.Direction.REVERSE);
-            }
+        leftLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftLaunchMotor");
+        rightLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightLaunchMotor");
 
-            for (DcMotorEx motor : new DcMotorEx[] {leftFrontDriveMotor, leftRearDriveMotor, rightFrontDriveMotor,
-                    rightRearDriveMotor, leftLaunchMotor, rightLaunchMotor}) {
-                motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            }
-            for (DcMotorEx motor : new DcMotorEx[] {}) {
-                // temporary, for debugging position
-                motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-            }
+        // each side is flipped in comparison to the other, so set the right side to reverse
+        // TODO: determine what we want for this
+        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor}) {
+            motor.setDirection(DcMotorSimple.Direction.FORWARD);
+        }
+        for (DcMotorEx motor : new DcMotorEx[]{rightFrontDriveMotor, rightRearDriveMotor, rightLaunchMotor}) {
+            motor.setDirection(DcMotorSimple.Direction.REVERSE);
+        }
 
-            for (DcMotorEx motor : new DcMotorEx[] {leftFrontDriveMotor, leftRearDriveMotor,
+        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, rightFrontDriveMotor,
+                rightRearDriveMotor, leftLaunchMotor, rightLaunchMotor}) {
+            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        }
+        for (DcMotorEx motor : new DcMotorEx[]{}) {
+            // temporary, for debugging position
+            motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        }
+        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor,
                 rightFrontDriveMotor, rightRearDriveMotor}) {
-                motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            }
-            for (DcMotorEx motor : new DcMotorEx[] {}) {
-                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            }
+            motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+        for (DcMotorEx motor : new DcMotorEx[]{}) {
+            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
 
-            for (DcMotorEx motor : new DcMotorEx[] {}) {
-                motor.setTargetPosition(0);
-            }
-            for (DcMotorEx motor : new DcMotorEx[] {}) {
-                motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                // temp, for debugging position
-                // motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            }
-            for (DcMotorEx motor : new DcMotorEx[] {}) {
-                // motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                // temp, for debugging position
-                // motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            }
+        for (DcMotorEx motor : new DcMotorEx[]{}) {
+            motor.setTargetPosition(0);
+        }
+        for (DcMotorEx motor : new DcMotorEx[]{}) {
+            motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            // temp, for debugging position
+            // motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+        for (DcMotorEx motor : new DcMotorEx[]{}) {
+            // motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            // temp, for debugging position
+            // motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
-
 }

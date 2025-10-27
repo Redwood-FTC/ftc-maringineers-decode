@@ -12,11 +12,11 @@ public class AutonomousMode extends LinearOpMode {
         initInit();
 
         while (this.opModeInInit()) {
-        runInit();
+            runInit();
         }
 
         while (this.opModeIsActive()) {
-        runActive();
+            runActive();
         }
 
         runDeInit();
@@ -26,7 +26,7 @@ public class AutonomousMode extends LinearOpMode {
         control = new Control(this);
     }
 
-    // for code that runs CONTINOUSLY during init --- NOT code that just
+    // for code that runs CONTINUOUSLY during init --- NOT code that just
     // runs once
     private void runInit() {
         while (this.opModeInInit()) {
@@ -39,6 +39,6 @@ public class AutonomousMode extends LinearOpMode {
     }
 
     private void runDeInit() {
-        
+
     }
 }

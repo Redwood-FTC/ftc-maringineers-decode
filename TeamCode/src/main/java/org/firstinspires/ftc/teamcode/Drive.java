@@ -67,23 +67,23 @@ public class Drive {
 
         // Normalize wheel powers to be less than 1.0
         double max = Arrays.stream(
-                new double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower})
+                        new double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower})
                 .map(Math::abs)
                 .max()
                 .getAsDouble();
 
         if (max > 1.0) {
             Arrays.stream(new Double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower}).map(n -> n /= max);
-           leftFrontPower /= max;
-           rightFrontPower /= max;
-           leftRearPower /= max;
-           rightRearPower /= max;
+            leftFrontPower /= max;
+            rightFrontPower /= max;
+            leftRearPower /= max;
+            rightRearPower /= max;
         }
 
         setPower(leftFrontPower, leftRearPower, rightFrontPower, rightRearPower);
     }
 
-    // DEPRECATED public void setPower(double leftFront, double leftRear, double rightFront, double rightRear) {
+    // DEPRECATED
     private void setPower(double leftFront, double leftRear, double rightFront, double rightRear) {
         hardware.leftFrontDriveMotor.setPower(leftFront);
         hardware.leftRearDriveMotor.setPower(leftRear);

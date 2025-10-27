@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.layout.Layout;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-// class to provide overall controll of the robot, during teleop
+// class to provide overall control of the robot, during teleop
 // specifically wrt the intake and launch modes, and directing *how*
 // the robot should be controlled --- though other classes primarily handle the
 // specifics of that, with methods we will probably use in here
@@ -85,9 +85,6 @@ public class Control {
         if (limelight.resultValid()) {
             telemetryM.debug("pose", limelight.pose().toString());
         }
-//        telemetryM.debug("Camera Position y", limelight.pose().toString());
-//        telemetryM.debug("Camera Position z",  limelight.pose().toString());
-//        telemetryM.debug("Camera Orientation", limelight.xxx.toString());
     }
 
     private void run() {
