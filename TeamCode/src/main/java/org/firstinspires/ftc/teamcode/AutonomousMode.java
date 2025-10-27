@@ -4,6 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+/**
+ * Manages the robot's autonomous.
+ */
 @Autonomous(name = "Autonomous Mode", group = "Auto")
 public class AutonomousMode extends LinearOpMode {
     private Control control;
@@ -22,12 +25,16 @@ public class AutonomousMode extends LinearOpMode {
         runDeInit();
     }
 
+    /**
+     * Initialises the control object.
+     */
     private void initInit() {
         control = new Control(this);
     }
 
-    // for code that runs CONTINUOUSLY during init --- NOT code that just
-    // runs once
+    /**
+     * For code that runs CONTINUOUSLY during Init.
+     */
     private void runInit() {
         while (this.opModeInInit()) {
             // nothing to do
@@ -35,9 +42,15 @@ public class AutonomousMode extends LinearOpMode {
         }
     }
 
+    /**
+     * No idea
+     */
     private void runActive() {
     }
 
+    /**
+     * No idea
+     */
     private void runDeInit() {
 
     }

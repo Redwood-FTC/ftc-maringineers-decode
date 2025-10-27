@@ -12,12 +12,11 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.layout.Layout;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-// class to provide overall control of the robot, during teleop
-// specifically wrt the intake and launch modes, and directing *how*
-// the robot should be controlled --- though other classes primarily handle the
-// specifics of that, with methods we will probably use in here
-// as much as possible, delegate specific stuff to other classes, and try
-// to keep this class pretty encapsulated, lots of functions as much as possible
+/**
+ * Manage overall control of the robot during teleop, specifically wrt the intake and launch modes,
+ * and directing *how* the robot should be controlled. It is meant to be highly encapsulated, with
+ * as many methods as possible in other classes.
+ */
 public class Control {
     private Layout layout;
     private Hardware hardware;
@@ -36,6 +35,11 @@ public class Control {
     // for intaking, and a Launch mode, for which the front of the robot
     // is reversed
 
+    /**
+     * Controls the robot's functions
+     *
+     * @param opMode the OpMode object
+     */
     public Control(OpMode opMode) {
         this.opMode = opMode;
         layout = new Layout(opMode);
@@ -52,16 +56,24 @@ public class Control {
         update();
     }
 
+    /**
+     * Starts the robot
+     */
     public void start() {
         started = true;
     }
 
+    /**
+     * Stops the robot
+     */
     public void stop() {
         drive.stopRobot();
     }
 
+    /**
+     * Updates drive, telemetry, and the limelight.
+     */
     public void update() {
-
         drive.update();
         telemetryM.update();
         tel.update();
@@ -87,6 +99,9 @@ public class Control {
         }
     }
 
+    /**
+     * Runs the robot functions
+     */
     private void run() {
         drive.gamepadDrive();
         launch.update();

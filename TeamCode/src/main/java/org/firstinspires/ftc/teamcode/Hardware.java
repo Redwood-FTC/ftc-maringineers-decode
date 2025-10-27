@@ -12,9 +12,6 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 
 import java.util.Arrays;
 
-// class for initiating hadrware, and holding the references to it;
-// as well as holding constants describing positions, etc.
-
 // TODO: do we want to have the methods to specifically control the physical
 // hardware in here, or in the more specific class?
 // determine that once we start doing some of that --- if it's pretty
@@ -22,6 +19,10 @@ import java.util.Arrays;
 // just for specifically controlling the hardware, move it here
 // also, code reuse, if necessary
 
+/**
+ * Initiates the hardware, holds the references to it, and has constants for various positisions to
+ * move to.
+ */
 public class Hardware {
     private OpMode opMode;
     public DcMotorEx leftFrontDriveMotor;
@@ -36,6 +37,11 @@ public class Hardware {
 
     public Limelight3A limelight;
 
+    /**
+     * Initialise the motors, encoders, servos, and limelight.
+     *
+     * @param opMode the OpMode object
+     */
     public Hardware(OpMode opMode) {
         this.opMode = opMode;
 
@@ -47,11 +53,17 @@ public class Hardware {
         initLimelight();
     }
 
+    /**
+     * Initialises the limelight.
+     */
     private void initLimelight() {
         limelight = opMode.hardwareMap.get(Limelight3A.class, "limelight");
     }
 
 
+    /**
+     * Initialises the servos.
+     */
     private void initServos() {
         intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
 
@@ -64,9 +76,15 @@ public class Hardware {
         }
     }
 
+    /**
+     * Initialises the encoders.
+     */
     private void initEncoders() {
     }
 
+    /**
+     * Initialises the motors.
+     */
     private void initMotors() {
         leftFrontDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftFrontDriveMotor");
         leftRearDriveMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftRearDriveMotor");

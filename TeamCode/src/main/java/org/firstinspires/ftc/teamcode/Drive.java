@@ -18,6 +18,14 @@ public class Drive {
 
     private Follower follower;
 
+    /**
+     * Declares OpMode, hardware, and layout, and sets the starting pose, updates it, and starts
+     * TeleOp.
+     *
+     * @param opMode   the OpMode object
+     * @param hardware the hardware object
+     * @param layout   the controller layout object
+     */
     public Drive(OpMode opMode, Hardware hardware, Layout layout) {
         this.opMode = opMode;
         this.hardware = hardware;
@@ -36,25 +44,37 @@ public class Drive {
         follower.startTeleopDrive();
     }
 
+    /**
+     * Updates the follower
+     */
     public void update() {
         follower.update();
     }
 
+    /**
+     * Stops the robot
+     */
     public void stopRobot() {
         // setPower(0, 0, 0, 0);
         follower.setTeleOpDrive(0, 0, 0, true);
     }
 
+    /**
+     * Sets TeleOP drive
+     */
     public void gamepadDrive() {
         // TODO: test robot vs field centric
         follower.setTeleOpDrive(layout.driveForwardAmount(), layout.driveStrafeAmount(), layout.driveYawAmount(), true);
     }
 
-    // x: positive is forward
-    // y: positive is strafe left
-    // yaw: positive is clockwise
-    // DEPRECATED
-    // keeping around so that if necessary, can easily use this method
+    /**
+     * DEPRECATED -
+     * Moves the robot based on controller input.
+     *
+     * @param x   x-value, positive is forward
+     * @param y   y-value, positive is strafe left
+     * @param yaw yaw, positive is clockwise
+     */
     private void moveRobot(double x, double y, double yaw) {
         // add reverse parameter? and encapsulate that here?
         // or add another method, moveRobotDirectional, which also
@@ -83,7 +103,15 @@ public class Drive {
         setPower(leftFrontPower, leftRearPower, rightFrontPower, rightRearPower);
     }
 
-    // DEPRECATED
+    /**
+     * DEPRECATED -
+     * Controls the power each wheel has
+     *
+     * @param leftFront  the left front wheel DCMotor object
+     * @param leftRear   the left rear wheel DCMotor object
+     * @param rightFront the right front wheel DCMotor object
+     * @param rightRear  the right rear wheel DCMotor object
+     */
     private void setPower(double leftFront, double leftRear, double rightFront, double rightRear) {
         hardware.leftFrontDriveMotor.setPower(leftFront);
         hardware.leftRearDriveMotor.setPower(leftRear);
