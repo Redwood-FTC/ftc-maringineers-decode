@@ -32,11 +32,11 @@ public class Constants {
         // .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
 
     // TODO: get real value
-    private static double ForwardTicksToInchesMultiplier = .026927;
+    private static double ForwardTicksToInchesMultiplier = 1.106262;
     // TODO: get real value
-    private static double StrafeTicksToInchesMultiplier = .034992;
+    private static double StrafeTicksToInchesMultiplier = -0.002984;
     // TODO: get real value
-    private static double TurnTicksToInchesMultiplier = .010444;
+    private static double TurnTicksToInchesMultiplier = 0.17;
 
     // TODO: once we have deadwheels
     public static ThreeWheelIMUConstants localizerConstants = new ThreeWheelIMUConstants()
