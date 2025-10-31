@@ -94,8 +94,7 @@ public class Control {
         telemetryM.debug("driveStrafeAmount", layout.driveStrafeAmount());
         telemetryM.debug("driveYawAmount", layout.driveYawAmount());
 
-        if
-        (limelight.resultValid()) {
+        if (limelight.resultValid()) {
             telemetryM.debug("pose", limelight.pose().toString());
         }
     }
