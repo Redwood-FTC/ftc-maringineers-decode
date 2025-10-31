@@ -80,10 +80,10 @@ public class Drive {
         // or add another method, moveRobotDirectional, which also
         // takes a reverse parameter, and calls this
 
-        double leftFrontPower = x - y + yaw;
+        double leftFrontPower = x - y - yaw;
         double leftRearPower = x + y + yaw;
         double rightFrontPower = x + y - yaw;
-        double rightRearPower = x - y - yaw;
+        double rightRearPower = x - y + yaw;
 
         // Normalize wheel powers to be less than 1.0
         double max = Arrays.stream(
