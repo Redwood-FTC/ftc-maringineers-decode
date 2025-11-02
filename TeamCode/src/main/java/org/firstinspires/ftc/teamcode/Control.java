@@ -27,6 +27,8 @@ public class Control {
     private Launch launch;
     private Intake intake;
 
+    private Belt belt;
+
     private TelemetryManager telemetryM;
 
     private boolean started = false;
@@ -48,6 +50,7 @@ public class Control {
         tel = new Tel(opMode, hardware);
         launch = new Launch(opMode, hardware, layout);
         intake = new Intake(opMode, hardware, layout);
+        belt = new Belt(opMode, hardware, layout);
         // TODO
         limelight = new Limelight(opMode, hardware);
 
@@ -106,5 +109,6 @@ public class Control {
         drive.gamepadDrive();
         launch.update();
         intake.update();
+        belt.update();
     }
 }
