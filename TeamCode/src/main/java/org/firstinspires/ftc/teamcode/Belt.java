@@ -36,7 +36,7 @@ public class Belt {
      * Updates the belt mechanism.
      */
     public void update() {
-        if (layout.run_intake()) {
+        if (layout.run_belt()) {
             spin();
         } else {
             stop();
