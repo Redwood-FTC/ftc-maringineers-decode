@@ -49,14 +49,13 @@ public class Belt {
      * Makes the belt servo spin.
      */
     public void spin() {
-        hardware.intakeServo.setPosition(0.0);
+        hardware.beltServo.setPosition(1.0);
     }
 
     /**
      * Stops the intake servo.
      */
     public void stop() {
-        hardware.intakeServo.setPosition(0.5);
+        hardware.beltServo.setPosition(0.);
     }
 }
-

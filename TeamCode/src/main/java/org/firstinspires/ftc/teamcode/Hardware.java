@@ -34,6 +34,7 @@ public class Hardware {
     public DcMotorEx rightLaunchMotor;
 
     public Servo intakeServo;
+    public Servo beltServo;
 
     public Limelight3A limelight;
 

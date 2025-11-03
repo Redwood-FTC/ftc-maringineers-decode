@@ -41,7 +41,14 @@ public class Layout {
         return gamepad1.b;
     }
 
-    public boolean run_belt() {return gamepad1.x;}
+    /**
+     * Controls the belt mechanism.
+     *
+     * @return whether or not x is pressed
+     */
+    public boolean run_belt() {
+        return gamepad1.x;
+    }
 
     // TODO: tune this, so it feels better
 
