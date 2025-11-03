@@ -67,7 +67,7 @@ public class Hardware {
      */
     private void initServos() {
         intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
-        beltServo = opMode.hardwareMap.get(Servo.clas, "beltServo");
+        beltServo = opMode.hardwareMap.get(Servo.class, "beltServo");
 
         for (Servo servo : new Servo[]{intakeServo, beltServo}) {
             servo.setDirection(Servo.Direction.FORWARD);
