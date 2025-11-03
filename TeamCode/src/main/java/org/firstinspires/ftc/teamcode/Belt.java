@@ -36,14 +36,8 @@ public class Belt {
      * Updates the belt mechanism.
      */
     public void update() {
-        if (layout.run_belt()) {
-            spin();
-        } else {
-            stop();
-        }
+        spin();
     }
-
-    // TODO: warm_up mechanism
 
     /**
      * Makes the belt servo spin.
@@ -53,9 +47,9 @@ public class Belt {
     }
 
     /**
-     * Stops the intake servo.
+     * Stops the belt servo.
      */
     public void stop() {
-        hardware.beltServo.setPosition(0.);
+        hardware.beltServo.setPosition(0.0);
     }
 }
