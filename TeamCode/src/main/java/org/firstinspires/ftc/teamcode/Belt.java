@@ -40,16 +40,16 @@ public class Belt {
     }
 
     /**
-     * Makes the belt servo spin.
+     * Makes the belt motor spin.
      */
     public void spin() {
-        hardware.beltServo.setPosition(1.0);
+        hardware.beltMotor.setPower(BELT_SPEED);
     }
 
     /**
-     * Stops the belt servo.
+     * Stops the belt motor.
      */
     public void stop() {
-        hardware.beltServo.setPosition(0.0);
+        hardware.beltMotor.setPower(0.0);
     }
 }

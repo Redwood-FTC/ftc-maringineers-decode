@@ -34,7 +34,7 @@ public class Hardware {
     public DcMotorEx rightLaunchMotor;
 
     public Servo intakeServo;
-    public Servo beltServo;
+    public DcMotorEx beltMotor;
 
     public Limelight3A limelight;
 
@@ -67,11 +67,6 @@ public class Hardware {
      */
     private void initServos() {
         intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
-        beltServo = opMode.hardwareMap.get(Servo.class, "beltServo");
-
-        for (Servo servo : new Servo[]{intakeServo, beltServo}) {
-            servo.setDirection(Servo.Direction.FORWARD);
-        }
 
         for (Servo servo : new Servo[]{}) {
             servo.setDirection(Servo.Direction.REVERSE);
@@ -96,9 +91,11 @@ public class Hardware {
         leftLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "leftLaunchMotor");
         rightLaunchMotor = opMode.hardwareMap.get(DcMotorEx.class, "rightLaunchMotor");
 
+        beltMotor = opMode.hardwareMap.get(DcMotorEx.class, "beltMotor");
+
         // each side is flipped in comparison to the other, so set the right side to reverse
         // TODO: determine what we want for this
-        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor}) {
+        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor, beltMotor}) {
             motor.setDirection(DcMotorSimple.Direction.FORWARD);
         }
         for (DcMotorEx motor : new DcMotorEx[]{rightFrontDriveMotor, rightRearDriveMotor, rightLaunchMotor}) {
