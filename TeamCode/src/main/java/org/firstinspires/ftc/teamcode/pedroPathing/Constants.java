@@ -31,11 +31,9 @@ public class Constants {
         // .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
         // .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
 
-    // TODO: get real value
+    // TODO: redo tuning
     private static double ForwardTicksToInchesMultiplier = .026927;
-    // TODO: get real value
     private static double StrafeTicksToInchesMultiplier = .034992;
-    // TODO: get real value
     private static double TurnTicksToInchesMultiplier = .010444;
 
     // TODO: once we have deadwheels
