@@ -35,8 +35,15 @@ public class Belt {
     /**
      * Updates the belt mechanism.
      */
-    public void update() {
-        spin();
+    public void runGamepad() {
+      // reuse this switch here, since for our purpose right now we want
+      // them to run at the same time
+      // TODO: once we're doing proper pedropathing launching, this'll change
+        if (layout.run_intake()) {
+            spin();
+        } else {
+            stop();
+        }
     }
 
     /**

@@ -96,10 +96,10 @@ public class Hardware {
 
         // each side is flipped in comparison to the other, so set the right side to reverse
         // TODO: determine what we want for this
-        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor, beltMotor}) {
+        for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, leftLaunchMotor}) {
             motor.setDirection(DcMotorSimple.Direction.FORWARD);
         }
-        for (DcMotorEx motor : new DcMotorEx[]{rightFrontDriveMotor, rightRearDriveMotor, rightLaunchMotor}) {
+        for (DcMotorEx motor : new DcMotorEx[]{rightFrontDriveMotor, rightRearDriveMotor, rightLaunchMotor, beltMotor}) {
             motor.setDirection(DcMotorSimple.Direction.REVERSE);
         }
 

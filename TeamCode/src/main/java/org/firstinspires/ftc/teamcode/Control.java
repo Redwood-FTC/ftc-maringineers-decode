@@ -77,10 +77,8 @@ public class Control {
      * Updates drive, telemetry, and the limelight.
      */
     public void update() {
-        drive.update();
         telemetryM.update();
         tel.update();
-        limelight.update();
 
         if (started) {
             run();
@@ -106,9 +104,11 @@ public class Control {
      * Runs the robot functions
      */
     private void run() {
+        drive.update();
+        limelight.update();
         drive.gamepadDrive();
         launch.update();
-        intake.update();
-        belt.update();
+        intake.runGamepad();
+        belt.runGamepad();
     }
 }
