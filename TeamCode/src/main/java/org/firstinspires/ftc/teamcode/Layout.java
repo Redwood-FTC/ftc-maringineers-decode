@@ -41,6 +41,18 @@ public class Layout {
         return gamepad1.b;
     }
 
+    public boolean menuUp() {
+      return gamepad1.dpad_up;
+    }
+
+    public boolean menuDown() {
+      return gamepad1.dpad_down;
+    }
+
+    public boolean menuSelect() {
+      return gamepad1.a;
+    }
+
     // TODO: tune this, so it feels better
     /**
      * Controls driving the robot forward/back.
