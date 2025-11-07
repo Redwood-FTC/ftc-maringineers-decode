@@ -33,8 +33,9 @@ public class Hardware {
     public DcMotorEx leftLaunchMotor;
     public DcMotorEx rightLaunchMotor;
 
-    public Servo intakeServo;
     public DcMotorEx beltMotor;
+
+    public Servo intakeServo;
 
     public Limelight3A limelight;
 
@@ -103,7 +104,7 @@ public class Hardware {
         }
 
         for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor, rightFrontDriveMotor,
-                rightRearDriveMotor }) {
+                rightRearDriveMotor, beltMotor}) {
             motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
         for (DcMotorEx motor : new DcMotorEx[]{leftLaunchMotor, rightLaunchMotor}) {
@@ -117,7 +118,8 @@ public class Hardware {
         //     motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // }
         for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor,
-                rightFrontDriveMotor, rightRearDriveMotor}) {
+                rightFrontDriveMotor, rightRearDriveMotor, leftLaunchMotor, rightLaunchMotor,
+            beltMotor}) {
             motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
         for (DcMotorEx motor : new DcMotorEx[]{}) {
