@@ -26,12 +26,15 @@ public class Control {
     private Limelight limelight;
     private Launch launch;
     private Intake intake;
-
     private Belt belt;
+
+    private Menu menu;
 
     private TelemetryManager telemetryM;
 
     private boolean started = false;
+    private boolean runMenu = false;
+    private boolean runAuto = false;
 
     // TODO: probably have something like last year, with a Pickup mode,
     // for intaking, and a Launch mode, for which the front of the robot
@@ -66,6 +69,16 @@ public class Control {
         started = true;
     }
 
+    public void runMenu() {
+      runMenu = true;
+      menu = new Menu(layout, opMode, opMode.telemetry);
+    }
+
+    public void runAuto() {
+      runAuto = true;
+      runMenu = false;
+    }
+
     /**
      * Stops the robot
      */
@@ -73,10 +86,53 @@ public class Control {
         drive.stopRobot();
     }
 
+    private void auto() {
+      // TEMPORARY
+      // dead reckoning algorithm, to just position ourselves correctly and
+      // launch three balls
+      switch (menu.selected()) {
+                case RED_FRONT:
+                case BLUE_FRONT:
+                // for front:move (forward?) for so long, fire
+                if (opMode.time < 1) {
+                  drive.setDrive(.25, 0, 0);
+                } else if (opMode.time < 1.5) {
+                  drive.setDrive(0, 0, 0);
+                  launch.spin();
+                } else {
+                  launch.spin();
+                  belt.spin();
+                }
+                break;
+                case RED_REAR:
+                // just immediately go?
+                // telemetry.addLine(" Selected RED_REAR");
+                // break;
+                case BLUE_REAR:
+                if (opMode.time < .5) {
+                  drive.setDrive(0, 0, 0);
+                  launch.spin();
+                } else {
+                  launch.spin();
+                  belt.spin();
+                }
+                break;
+      }
+    }
+
     /**
      * Updates drive, telemetry, and the limelight.
      */
     public void update() {
+      if (runMenu) {
+        menu.update();
+        return;
+      }
+
+      if (runAuto) {
+        auto();
+      }
+
         telemetryM.update();
         tel.update();
 

@@ -59,6 +59,10 @@ public class Drive {
         follower.setTeleOpDrive(0, 0, 0, true);
     }
 
+    public void setDrive(double x, double y, double yaw) {
+        follower.setTeleOpDrive(x, y, yaw, true);
+    }
+
     /**
      * Sets TeleOP drive
      */

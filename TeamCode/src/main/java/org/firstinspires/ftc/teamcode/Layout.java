@@ -41,6 +41,10 @@ public class Layout {
         return gamepad1.b;
     }
 
+    public double beltPower() {
+      return gamepad1.right_stick_y;
+    }
+
     public boolean menuUp() {
       return gamepad1.dpad_up;
     }

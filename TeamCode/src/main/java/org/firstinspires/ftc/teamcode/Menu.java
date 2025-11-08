@@ -4,13 +4,14 @@ import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.layout.Layout;
 
 import java.util.Arrays;
 
 public class Menu {
-    public enum Option {
+    public enum Position {
       RED_FRONT,
       RED_REAR,
       BLUE_FRONT,
@@ -19,28 +20,33 @@ public class Menu {
 
     private Layout layout;
     private OpMode opMode;
+    private Telemetry telemetry;
 
     private int menuPosition = 0;
     // intentionally left initially null
-    private Option selected;
+    private Position selected;
     private boolean pressed = false;
 
-    public Menu(Layout layout, OpMode opMode) {
+    public Menu(Layout layout, OpMode opMode, Telemetry telemetry) {
         this.layout = layout;
     }
 
     public void update() {
         if (layout.menuSelect()) {
-            selected = switch menuPosition {
-              0:
-              return Option.RED_FRONT;
-              1:
-              return Option.RED_REAR;
-              2:
-              return Option.BLUE_FRONT;
-              3:
-              return Option.BLUE_REAR;
-            }
+            switch (menuPosition) {
+              case 0:
+              selected =  Position.RED_FRONT;
+              break;
+              case 1:
+              selected =  Position.RED_REAR;
+              break;
+              case 2:
+              selected =  Position.BLUE_FRONT;
+              break;
+                case 3:
+              selected =  Position.BLUE_REAR;
+              break;
+            };
         }
 
         if (layout.menuUp() && !pressed) {
@@ -61,11 +67,33 @@ public class Menu {
     }
 
     private void updateTelemetry() {
-        if f
+        if (selected == null) {
+            telemetry.addLine("dpad up and down to navigate, a to select.");
+            telemetry.addLine((menuPosition == 0 ? "->" : "") + "RED_FRONT");
+            telemetry.addLine((menuPosition == 1 ? "->" : "") + "RED_REAR");
+            telemetry.addLine((menuPosition == 2 ? "->" : "") + "BLUE_FRONT");
+            telemetry.addLine((menuPosition == 3 ? "->" : "") + "BLUE_REAR");
+        } else {
+            switch (selected) {
+                case RED_FRONT:
+                telemetry.addLine(" Selected RED_FRONT");
+                break;
+                case RED_REAR:
+                telemetry.addLine(" Selected RED_REAR");
+                break;
+                case BLUE_FRONT:
+                telemetry.addLine(" Selected BLUE_FRONT");
+                break;
+                case BLUE_REAR:
+                telemetry.addLine(" Selected BLUE_REAR");
+                break;
+            };
+                
+        }
     }
 
-    // return Option if Option selected, else return null
-    public Option optionSelected() {
+    // return Position if Position selected, else return null
+    public Position selected() {
         return selected;
     }
 }

@@ -50,7 +50,7 @@ public class Belt {
      * Makes the belt motor spin.
      */
     public void spin() {
-        hardware.beltMotor.setPower(BELT_SPEED);
+        hardware.beltMotor.setPower(layout.beltPower());
     }
 
     /**

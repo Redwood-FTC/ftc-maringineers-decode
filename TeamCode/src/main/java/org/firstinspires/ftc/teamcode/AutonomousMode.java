@@ -30,22 +30,21 @@ public class AutonomousMode extends LinearOpMode {
      */
     private void initInit() {
         control = new Control(this);
+        control.runMenu();
     }
 
     /**
      * For code that runs CONTINUOUSLY during Init.
      */
     private void runInit() {
-        while (this.opModeInInit()) {
-            // nothing to do
-            waitForStart();
-        }
+      control.update();
     }
 
     /**
      * No idea
      */
     private void runActive() {
+      control.runAuto();
     }
 
     /**
