@@ -101,7 +101,7 @@ public class Control {
                   launch.spin();
                 } else {
                   launch.spin();
-                  belt.spin();
+                  belt.runFull();
                 }
                 break;
                 case RED_REAR:
@@ -114,7 +114,7 @@ public class Control {
                   launch.spin();
                 } else {
                   launch.spin();
-                  belt.spin();
+                  belt.runFull();
                 }
                 break;
       }

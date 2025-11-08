@@ -9,6 +9,7 @@ import com.pedropathing.ftc.localization.constants.DriveEncoderConstants;
 import com.pedropathing.ftc.localization.constants.ThreeWheelIMUConstants;
 import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Constants {
@@ -24,11 +25,11 @@ public class Constants {
         .leftRearMotorName("leftRearDriveMotor")
         .rightFrontMotorName("rightFrontDriveMotor")
         .rightRearMotorName("rightRearDriveMotor")
-        .useBrakeModeInTeleOp(true);
+        .useBrakeModeInTeleOp(true)
         // possibly redundant?
-        //.leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
+        .leftFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
         // .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
-        // .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
+        .rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE);
         // .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
 
     // TODO: redo tuning

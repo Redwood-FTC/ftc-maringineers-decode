@@ -35,22 +35,26 @@ public class Belt {
     /**
      * Updates the belt mechanism.
      */
-    public void runGamepad() {
-      // reuse this switch here, since for our purpose right now we want
-      // them to run at the same time
-      // TODO: once we're doing proper pedropathing launching, this'll change
-        if (layout.run_intake()) {
-            spin();
-        } else {
-            stop();
-        }
-    }
+    // public void runGamepad() {
+    //   // reuse this switch here, since for our purpose right now we want
+    //   // them to run at the same time
+    //   // TODO: once we're doing proper pedropathing launching, this'll change
+    //     if (layout.run_intake()) {
+    //         spin();
+    //     } else {
+    //         stop();
+    //     }
+    // }
 
     /**
      * Makes the belt motor spin.
      */
-    public void spin() {
+    public void runGamepad() {
         hardware.beltMotor.setPower(layout.beltPower());
+    }
+
+    public void runFull() {
+        hardware.beltMotor.setPower(BELT_SPEED);
     }
 
     /**
