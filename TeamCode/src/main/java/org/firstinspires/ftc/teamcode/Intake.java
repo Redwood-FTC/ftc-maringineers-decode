@@ -35,11 +35,18 @@ public class Intake {
     /**
      * Updates the intake mechanism.
      */
+    private boolean pressed = false;
     public void runGamepad() {
-        if (layout.run_intake()) {
-            spin();
+        if (layout.intake_forward() && !pressed) {
+          pressed = true;
+          in();
+        } else if (layout.intake_backward() && !pressed) {
+          pressed = true;
+          out();
+        } else if (layout.intake_stop()){
+          stop();
         } else {
-            stop();
+          pressed = false;
         }
     }
 
@@ -48,8 +55,12 @@ public class Intake {
     /**
      * Makes the intake servo spin.
      */
-    public void spin() {
+    public void in() {
         hardware.intakeServo.setPosition(0.0);
+    }
+
+    public void out() {
+        hardware.intakeServo.setPosition(1.0);
     }
 
     /**

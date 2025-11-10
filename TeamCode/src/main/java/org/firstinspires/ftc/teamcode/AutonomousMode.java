@@ -17,6 +17,9 @@ public class AutonomousMode extends LinearOpMode {
         while (this.opModeInInit()) {
             runInit();
         }
+        // while (!this.opModeIsActive()) {
+        //     runInit();
+        // }
 
         while (this.opModeIsActive()) {
             runActive();
@@ -29,8 +32,8 @@ public class AutonomousMode extends LinearOpMode {
      * Initialises the control object.
      */
     private void initInit() {
-        control = new Control(this);
-        control.runMenu();
+        // control = new Control(this);
+        // control.runMenu();
     }
 
     /**
@@ -45,6 +48,7 @@ public class AutonomousMode extends LinearOpMode {
      */
     private void runActive() {
       control.runAuto();
+      control.update();
     }
 
     /**

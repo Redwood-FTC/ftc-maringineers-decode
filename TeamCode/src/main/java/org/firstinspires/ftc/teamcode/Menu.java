@@ -90,6 +90,8 @@ public class Menu {
             };
                 
         }
+
+        telemetry.update();
     }
 
     // return Position if Position selected, else return null

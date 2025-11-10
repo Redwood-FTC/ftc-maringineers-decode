@@ -18,6 +18,9 @@ public class Drive {
 
     private Follower follower;
 
+    private int swapFront = 1;
+    private double drivePower = 1;
+
     /**
      * Declares OpMode, hardware, and layout, and sets the starting pose, updates it, and starts
      * TeleOp.
@@ -67,8 +70,17 @@ public class Drive {
      * Sets TeleOP drive
      */
     public void gamepadDrive() {
+      if (layout.frontFront()) {
+        swapFront = 1;
+      } else if (layout.frontBack()) {
+        swapFront = -1;
+      }
+
         // TODO: test robot vs field centric
-        follower.setTeleOpDrive(layout.driveForwardAmount(), layout.driveStrafeAmount(), layout.driveYawAmount(), true);
+        // follower.setTeleOpDrive(layout.driveForwardAmount() * swapFront * drivePower,
+        //   layout.driveStrafeAmount() * swapFront * drivePower, layout.driveYawAmount() * drivePower, true);
+        moveRobot(layout.driveForwardAmount() * swapFront * drivePower,
+          layout.driveStrafeAmount() * swapFront * drivePower, -layout.driveYawAmount() * drivePower);
     }
 
     /**
@@ -90,19 +102,19 @@ public class Drive {
         double rightRearPower = x - y - yaw;
 
         // Normalize wheel powers to be less than 1.0
-        double max = Arrays.stream(
-                        new double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower})
-                .map(Math::abs)
-                .max()
-                .getAsDouble();
+        // double max = Arrays.stream(
+        //                 new double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower})
+        //         .map(Math::abs)
+        //         .max()
+        //         .getAsDouble();
 
-        if (max > 1.0) {
-            Arrays.stream(new Double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower}).map(n -> n /= max);
-            leftFrontPower /= max;
-            rightFrontPower /= max;
-            leftRearPower /= max;
-            rightRearPower /= max;
-        }
+        // if (max > 1.0) {
+        //     Arrays.stream(new Double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower}).map(n -> n /= max);
+        //     leftFrontPower /= max;
+        //     rightFrontPower /= max;
+        //     leftRearPower /= max;
+        //     rightRearPower /= max;
+        // }
 
         setPower(leftFrontPower, leftRearPower, rightFrontPower, rightRearPower);
     }

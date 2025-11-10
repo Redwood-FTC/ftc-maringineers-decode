@@ -28,8 +28,28 @@ public class Layout {
      *
      * @return whether or not a is pressed
      */
-    public boolean run_launch() {
-        return gamepad1.a;
+    public boolean launch_high() {
+        return gamepad1.right_bumper;
+    }
+
+    public boolean launch_low() {
+      return gamepad1.left_bumper;
+    }
+
+    public boolean launch_reverse() {
+      return gamepad1.b;
+    }
+
+    public double launch_power() {
+      return -gamepad1.right_stick_x;
+    }
+
+    public boolean frontFront() {
+      return gamepad1.x;
+    }
+
+    public boolean frontBack() {
+      return gamepad1.y;
     }
 
     /**
@@ -37,12 +57,20 @@ public class Layout {
      *
      * @return whether or not b is pressed
      */
-    public boolean run_intake() {
-        return gamepad1.b;
+    public boolean intake_forward() {
+        return gamepad1.dpad_up;
+    }
+
+    public boolean intake_backward() {
+      return gamepad1.dpad_down;
+    }
+
+    public boolean intake_stop() {
+      return gamepad1.a;
     }
 
     public double beltPower() {
-      return gamepad1.right_stick_y;
+      return -gamepad1.right_stick_y;
     }
 
     public boolean menuUp() {

@@ -70,8 +70,8 @@ public class Control {
     }
 
     public void runMenu() {
-      runMenu = true;
       menu = new Menu(layout, opMode, opMode.telemetry);
+      runMenu = true;
     }
 
     public void runAuto() {
@@ -98,9 +98,9 @@ public class Control {
                   drive.setDrive(.25, 0, 0);
                 } else if (opMode.time < 1.5) {
                   drive.setDrive(0, 0, 0);
-                  launch.spin();
+                  launch.spin_slow();
                 } else {
-                  launch.spin();
+                  launch.spin_slow();
                   belt.runFull();
                 }
                 break;
@@ -111,9 +111,9 @@ public class Control {
                 case BLUE_REAR:
                 if (opMode.time < .5) {
                   drive.setDrive(0, 0, 0);
-                  launch.spin();
+                  launch.spin_fast();
                 } else {
-                  launch.spin();
+                  launch.spin_fast();
                   belt.runFull();
                 }
                 break;
@@ -127,14 +127,16 @@ public class Control {
       if (runMenu) {
         menu.update();
         return;
+      } else {
+        telemetryM.update();
+        tel.update();
       }
+      opMode.telemetry.addData("MENU: ", runMenu);
 
       if (runAuto) {
         auto();
+        return;
       }
-
-        telemetryM.update();
-        tel.update();
 
         if (started) {
             run();
@@ -163,7 +165,7 @@ public class Control {
         drive.update();
         limelight.update();
         drive.gamepadDrive();
-        launch.update();
+        launch.runGamepad();
         intake.runGamepad();
         belt.runGamepad();
     }

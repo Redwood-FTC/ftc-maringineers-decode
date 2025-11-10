@@ -17,7 +17,8 @@ public class Launch {
     private OpMode opMode;
     private Layout layout;
 
-    private double LAUNCH_SPEED = 0.7;
+    private double FAST_SPEED = 0.70;
+    private double SLOW_SPEED = 0.5;
 
     /**
      * Initialises the OpMode, Hardware, and Layout objects.
@@ -35,11 +36,16 @@ public class Launch {
     /**
      * Updates the launch mechanism.
      */
-    public void update() {
-        if (layout.run_launch()) {
-            spin();
+    public void runGamepad() {
+        if (layout.launch_high()) {
+            spin_fast();
+        } else if (layout.launch_low()) {
+            spin_slow();
+        } else if (layout.launch_reverse()) {
+          spin_reverse();
         } else {
-            stop();
+          stop();
+          // spin(layout.launch_power());
         }
     }
 
@@ -48,9 +54,19 @@ public class Launch {
     /**
      * Spins the launch servos.
      */
-    public void spin() {
-        hardware.leftLaunchMotor.setPower(LAUNCH_SPEED);
-        hardware.rightLaunchMotor.setPower(LAUNCH_SPEED);
+    public void spin_fast() {
+        hardware.leftLaunchMotor.setPower(FAST_SPEED);
+        hardware.rightLaunchMotor.setPower(FAST_SPEED);
+    }
+
+    public void spin_slow() {
+        hardware.leftLaunchMotor.setPower(SLOW_SPEED);
+        hardware.rightLaunchMotor.setPower(SLOW_SPEED);
+    }
+
+    public void spin(double speed) {
+        hardware.leftLaunchMotor.setPower(speed);
+        hardware.rightLaunchMotor.setPower(speed);
     }
 
     /**
@@ -59,6 +75,11 @@ public class Launch {
     public void stop() {
         hardware.leftLaunchMotor.setPower(0.0);
         hardware.rightLaunchMotor.setPower(0.0);
+    }
+
+    public void spin_reverse() {
+        hardware.leftLaunchMotor.setPower(-1.0);
+        hardware.rightLaunchMotor.setPower(-1.0);
     }
 }
 
