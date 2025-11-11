@@ -40,15 +40,15 @@ public class AutonomousMode extends LinearOpMode {
      * For code that runs CONTINUOUSLY during Init.
      */
     private void runInit() {
-      control.update();
+        control.update();
     }
 
     /**
      * No idea
      */
     private void runActive() {
-      control.runAuto();
-      control.update();
+        control.runAuto();
+        control.update();
     }
 
     /**

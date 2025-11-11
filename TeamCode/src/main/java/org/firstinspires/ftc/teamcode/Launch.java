@@ -1,13 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.pedropathing.follower.Follower;
-import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.layout.Layout;
-
-import java.util.Arrays;
 
 /**
  * Controls the launching mechanism.
@@ -42,10 +37,10 @@ public class Launch {
         } else if (layout.launchLow()) {
             spinSlow();
         } else if (layout.launchReverse()) {
-          spinReverse();
+            spinReverse();
         } else {
-          stop();
-          // spin(layout.launchPower());
+            stop();
+            // spin(layout.launchPower());
         }
     }
 
@@ -54,12 +49,12 @@ public class Launch {
     /**
      * Spins the launch servos.
      */
-    public void spin_fast() {
+    public void spinFast() {
         hardware.leftLaunchMotor.setPower(FAST_SPEED);
         hardware.rightLaunchMotor.setPower(FAST_SPEED);
     }
 
-    public void spin_slow() {
+    public void spinSlow() {
         hardware.leftLaunchMotor.setPower(SLOW_SPEED);
         hardware.rightLaunchMotor.setPower(SLOW_SPEED);
     }
@@ -77,7 +72,7 @@ public class Launch {
         hardware.rightLaunchMotor.setPower(0.0);
     }
 
-    public void spin_reverse() {
+    public void spinReverse() {
         hardware.leftLaunchMotor.setPower(-1.0);
         hardware.rightLaunchMotor.setPower(-1.0);
     }

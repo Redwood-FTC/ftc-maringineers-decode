@@ -38,7 +38,7 @@ public class Drive {
         // TODO: set it with limelight if possible, else default)
         // just loop in int, trying to find it, and if not found,
         // set it to new here?
-        // or have them set the startingposition manually if limelight can't
+        // or have them set the starting position manually if limelight can't
         // find it
         // (and also let them disable limit switches, etc.)
         // TODO: prev.
@@ -70,17 +70,17 @@ public class Drive {
      * Sets TeleOP drive
      */
     public void gamepadDrive() {
-      if (layout.frontFront()) {
-        swapFront = 1;
-      } else if (layout.frontBack()) {
-        swapFront = -1;
-      }
+        if (layout.frontFront()) {
+            swapFront = 1;
+        } else if (layout.frontBack()) {
+            swapFront = -1;
+        }
 
         // TODO: test robot vs field centric
         // follower.setTeleOpDrive(layout.driveForwardAmount() * swapFront * drivePower,
         //   layout.driveStrafeAmount() * swapFront * drivePower, layout.driveYawAmount() * drivePower, true);
         moveRobot(layout.driveForwardAmount() * swapFront * drivePower,
-          layout.driveStrafeAmount() * swapFront * drivePower, -layout.driveYawAmount() * drivePower);
+                layout.driveStrafeAmount() * swapFront * drivePower, -layout.driveYawAmount() * drivePower);
     }
 
     /**

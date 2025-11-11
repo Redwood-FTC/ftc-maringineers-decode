@@ -31,17 +31,18 @@ public class Intake {
      * Updates the intake mechanism.
      */
     private boolean pressed = false;
+
     public void runGamepad() {
         if (layout.intakeForward() && !pressed) {
-          pressed = true;
-          in();
+            pressed = true;
+            in();
         } else if (layout.intakeBackward() && !pressed) {
-          pressed = true;
-          out();
-        } else if (layout.intakeStop()){
-          stop();
+            pressed = true;
+            out();
+        } else if (layout.intakeStop()) {
+            stop();
         } else {
-          pressed = false;
+            pressed = false;
         }
     }
 

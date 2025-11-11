@@ -97,9 +97,9 @@ public class Control {
                     drive.setDrive(.25, 0, 0);
                 } else if (opMode.time < 1.5) {
                     drive.setDrive(0, 0, 0);
-                    launch.spin_slow();
+                    launch.spinSlow();
                 } else {
-                    launch.spin_slow();
+                    launch.spinSlow();
                     belt.runFull();
                 }
                 break;
@@ -110,9 +110,9 @@ public class Control {
             case BLUE_REAR:
                 if (opMode.time < .5) {
                     drive.setDrive(0, 0, 0);
-                    launch.spin_fast();
+                    launch.spinFast();
                 } else {
-                    launch.spin_fast();
+                    launch.spinFast();
                     belt.runFull();
                 }
                 break;
