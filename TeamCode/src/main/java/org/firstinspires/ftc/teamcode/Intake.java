@@ -1,13 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.pedropathing.follower.Follower;
-import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.layout.Layout;
-
-import java.util.Arrays;
 
 /**
  * Controls the intake mechanism.
@@ -37,20 +32,20 @@ public class Intake {
      */
     private boolean pressed = false;
     public void runGamepad() {
-        if (layout.intake_forward() && !pressed) {
+        if (layout.intakeForward() && !pressed) {
           pressed = true;
           in();
-        } else if (layout.intake_backward() && !pressed) {
+        } else if (layout.intakeBackward() && !pressed) {
           pressed = true;
           out();
-        } else if (layout.intake_stop()){
+        } else if (layout.intakeStop()){
           stop();
         } else {
           pressed = false;
         }
     }
 
-    // TODO: warm_up mechanism
+    // TODO: warmUp mechanism
 
     /**
      * Makes the intake servo spin.

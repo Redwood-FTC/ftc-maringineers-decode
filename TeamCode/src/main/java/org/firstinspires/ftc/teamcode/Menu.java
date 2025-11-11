@@ -76,21 +76,19 @@ public class Menu {
         } else {
             switch (selected) {
                 case RED_FRONT:
-                telemetry.addLine(" Selected RED_FRONT");
-                break;
+                    telemetry.addLine(" Selected RED_FRONT");
+                    break;
                 case RED_REAR:
-                telemetry.addLine(" Selected RED_REAR");
-                break;
+                    telemetry.addLine(" Selected RED_REAR");
+                    break;
                 case BLUE_FRONT:
-                telemetry.addLine(" Selected BLUE_FRONT");
-                break;
+                    telemetry.addLine(" Selected BLUE_FRONT");
+                    break;
                 case BLUE_REAR:
-                telemetry.addLine(" Selected BLUE_REAR");
-                break;
-            };
-                
+                    telemetry.addLine(" Selected BLUE_REAR");
+                    break;
+            }
         }
-
         telemetry.update();
     }
 

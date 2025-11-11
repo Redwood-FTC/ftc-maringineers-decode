@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.layout;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -28,19 +27,19 @@ public class Layout {
      *
      * @return whether or not a is pressed
      */
-    public boolean launch_high() {
+    public boolean launchHigh() {
         return gamepad1.right_bumper;
     }
 
-    public boolean launch_low() {
+    public boolean launchLow() {
       return gamepad1.left_bumper;
     }
 
-    public boolean launch_reverse() {
+    public boolean launchReverse() {
       return gamepad1.b;
     }
 
-    public double launch_power() {
+    public double launchPower() {
       return -gamepad1.right_stick_x;
     }
 
@@ -57,15 +56,15 @@ public class Layout {
      *
      * @return whether or not b is pressed
      */
-    public boolean intake_forward() {
+    public boolean intakeForward() {
         return gamepad1.dpad_up;
     }
 
-    public boolean intake_backward() {
+    public boolean intakeBackward() {
       return gamepad1.dpad_down;
     }
 
-    public boolean intake_stop() {
+    public boolean intakeStop() {
       return gamepad1.a;
     }
 

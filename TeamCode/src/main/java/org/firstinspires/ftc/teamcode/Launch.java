@@ -37,15 +37,15 @@ public class Launch {
      * Updates the launch mechanism.
      */
     public void runGamepad() {
-        if (layout.launch_high()) {
-            spin_fast();
-        } else if (layout.launch_low()) {
-            spin_slow();
-        } else if (layout.launch_reverse()) {
-          spin_reverse();
+        if (layout.launchHigh()) {
+            spinFast();
+        } else if (layout.launchLow()) {
+            spinSlow();
+        } else if (layout.launchReverse()) {
+          spinReverse();
         } else {
           stop();
-          // spin(layout.launch_power());
+          // spin(layout.launchPower());
         }
     }
 

@@ -20,7 +20,7 @@ import java.util.Arrays;
 // also, code reuse, if necessary
 
 /**
- * Initiates the hardware, holds the references to it, and has constants for various positisions to
+ * Initiates the hardware, holds the references to it, and has constants for various positions to
  * move to.
  */
 public class Hardware {

@@ -70,13 +70,13 @@ public class Control {
     }
 
     public void runMenu() {
-      menu = new Menu(layout, opMode, opMode.telemetry);
-      runMenu = true;
+        menu = new Menu(layout, opMode, opMode.telemetry);
+        runMenu = true;
     }
 
     public void runAuto() {
-      runAuto = true;
-      runMenu = false;
+        runAuto = true;
+        runMenu = false;
     }
 
     /**
@@ -87,56 +87,55 @@ public class Control {
     }
 
     private void auto() {
-      // TEMPORARY
-      // dead reckoning algorithm, to just position ourselves correctly and
-      // launch three balls
-      switch (menu.selected()) {
-                case RED_FRONT:
-                case BLUE_FRONT:
+        // TEMPORARY
+        // dead reckoning algorithm, to just position ourselves correctly and launch three balls
+        switch (menu.selected()) {
+            case RED_FRONT:
+            case BLUE_FRONT:
                 // for front:move (forward?) for so long, fire
                 if (opMode.time < 1) {
-                  drive.setDrive(.25, 0, 0);
+                    drive.setDrive(.25, 0, 0);
                 } else if (opMode.time < 1.5) {
-                  drive.setDrive(0, 0, 0);
-                  launch.spin_slow();
+                    drive.setDrive(0, 0, 0);
+                    launch.spin_slow();
                 } else {
-                  launch.spin_slow();
-                  belt.runFull();
+                    launch.spin_slow();
+                    belt.runFull();
                 }
                 break;
-                case RED_REAR:
+            case RED_REAR:
                 // just immediately go?
                 // telemetry.addLine(" Selected RED_REAR");
                 // break;
-                case BLUE_REAR:
+            case BLUE_REAR:
                 if (opMode.time < .5) {
-                  drive.setDrive(0, 0, 0);
-                  launch.spin_fast();
+                    drive.setDrive(0, 0, 0);
+                    launch.spin_fast();
                 } else {
-                  launch.spin_fast();
-                  belt.runFull();
+                    launch.spin_fast();
+                    belt.runFull();
                 }
                 break;
-      }
+        }
     }
 
     /**
      * Updates drive, telemetry, and the limelight.
      */
     public void update() {
-      if (runMenu) {
-        menu.update();
-        return;
-      } else {
-        telemetryM.update();
-        tel.update();
-      }
-      opMode.telemetry.addData("MENU: ", runMenu);
+        if (runMenu) {
+            menu.update();
+            return;
+        } else {
+            telemetryM.update();
+            tel.update();
+        }
+        opMode.telemetry.addData("MENU: ", runMenu);
 
-      if (runAuto) {
-        auto();
-        return;
-      }
+        if (runAuto) {
+            auto();
+            return;
+        }
 
         if (started) {
             run();
