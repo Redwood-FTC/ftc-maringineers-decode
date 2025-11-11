@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Manages the robot's autonomous.
  */
 @Autonomous(name = "Autonomous Mode", group = "Auto")
-public class AutonomousMode extends LinearOpMode {
+public class AutonomousMode extends OpMode {
     private Control control;
 
     public void runOpMode() throws InterruptedException {
@@ -31,30 +31,33 @@ public class AutonomousMode extends LinearOpMode {
     /**
      * Initialises the control object.
      */
-    private void initInit() {
-        // control = new Control(this);
-        // control.runMenu();
+    public void init() {
+        control = new Control(this);
+        control.runMenu();
     }
 
     /**
      * For code that runs CONTINUOUSLY during Init.
      */
-    private void runInit() {
-        control.update();
+    public void init_loop() {
+      control.update();
     }
 
     /**
      * Run autonomous.
      */
-    private void runActive() {
-        control.runAuto();
-        control.update();
+    public void start() {
+      control.runAuto();
+    }
+
+    public void loop() {
+      control.update();
     }
 
     /**
      * Does nothing yet.
      */
-    private void runDeInit() {
+    public void stop() {
 
     }
 }
