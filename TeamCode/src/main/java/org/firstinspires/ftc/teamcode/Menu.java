@@ -12,10 +12,10 @@ import java.util.Arrays;
 
 public class Menu {
     public enum Position {
-      RED_FRONT,
-      RED_REAR,
-      BLUE_FRONT,
-      BLUE_REAR,
+        RED_FRONT,
+        RED_REAR,
+        BLUE_FRONT,
+        BLUE_REAR,
     }
 
     private Layout layout;
@@ -34,19 +34,20 @@ public class Menu {
     public void update() {
         if (layout.menuSelect()) {
             switch (menuPosition) {
-              case 0:
-              selected =  Position.RED_FRONT;
-              break;
-              case 1:
-              selected =  Position.RED_REAR;
-              break;
-              case 2:
-              selected =  Position.BLUE_FRONT;
-              break;
+                case 0:
+                    selected = Position.RED_FRONT;
+                    break;
+                case 1:
+                    selected = Position.RED_REAR;
+                    break;
+                case 2:
+                    selected = Position.BLUE_FRONT;
+                    break;
                 case 3:
-              selected =  Position.BLUE_REAR;
-              break;
-            };
+                    selected = Position.BLUE_REAR;
+                    break;
+            }
+            ;
         }
 
         if (layout.menuUp() && !pressed) {

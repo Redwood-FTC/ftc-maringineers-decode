@@ -44,7 +44,7 @@ public class AutonomousMode extends LinearOpMode {
     }
 
     /**
-     * No idea
+     * Run autonomous.
      */
     private void runActive() {
         control.runAuto();
@@ -52,7 +52,7 @@ public class AutonomousMode extends LinearOpMode {
     }
 
     /**
-     * No idea
+     * Does nothing yet.
      */
     private void runDeInit() {
 

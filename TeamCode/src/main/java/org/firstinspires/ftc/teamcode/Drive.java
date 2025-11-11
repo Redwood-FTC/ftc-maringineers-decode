@@ -121,7 +121,7 @@ public class Drive {
 
     /**
      * DEPRECATED -
-     * Controls the power each wheel has
+     * Controls the power each wheel has.
      *
      * @param leftFront  the left front wheel DCMotor object
      * @param leftRear   the left rear wheel DCMotor object
