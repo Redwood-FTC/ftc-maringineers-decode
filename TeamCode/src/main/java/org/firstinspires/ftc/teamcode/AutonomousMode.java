@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 /**
@@ -10,23 +11,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @Autonomous(name = "Autonomous Mode", group = "Auto")
 public class AutonomousMode extends OpMode {
     private Control control;
-
-    public void runOpMode() throws InterruptedException {
-        initInit();
-
-        while (this.opModeInInit()) {
-            runInit();
-        }
-        // while (!this.opModeIsActive()) {
-        //     runInit();
-        // }
-
-        while (this.opModeIsActive()) {
-            runActive();
-        }
-
-        runDeInit();
-    }
 
     /**
      * Initialises the control object.

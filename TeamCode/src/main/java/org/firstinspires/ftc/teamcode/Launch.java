@@ -12,8 +12,8 @@ public class Launch {
     private OpMode opMode;
     private Layout layout;
 
-    private double FAST_SPEED = 0.70;
-    private double SLOW_SPEED = 0.5;
+    private double FAST_SPEED = 0.60;
+    private double SLOW_SPEED = 0.4;
 
     /**
      * Initialises the OpMode, Hardware, and Layout objects.
