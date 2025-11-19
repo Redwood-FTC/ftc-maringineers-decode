@@ -28,11 +28,19 @@ public class Layout {
      * @return whether or not a is pressed
      */
     public boolean launchHigh() {
-        return gamepad1.right_bumper;
+        return gamepad1.dpad_right;
     }
 
     public boolean launchLow() {
+      return gamepad1.dpad_left;
+    }
+
+    public boolean aim() {
       return gamepad1.left_bumper;
+    }
+
+    public boolean fire() {
+      return gamepad1.right_bumper;
     }
 
     public boolean launchReverse() {

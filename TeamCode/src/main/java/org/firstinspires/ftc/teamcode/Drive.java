@@ -15,8 +15,9 @@ public class Drive {
     private Hardware hardware;
     private OpMode opMode;
     private Layout layout;
+    private Limelight limelight;
 
-    private Follower follower;
+    // private Follower follower;
 
     private int swapFront = 1;
     private double drivePower = 1;
@@ -29,41 +30,57 @@ public class Drive {
      * @param hardware the hardware object
      * @param layout   the controller layout object
      */
-    public Drive(OpMode opMode, Hardware hardware, Layout layout) {
+    public Drive(OpMode opMode, Hardware hardware, Layout layout, Limelight limelight) {
         this.opMode = opMode;
         this.hardware = hardware;
         this.layout = layout;
+        this.limelight = limelight;
 
-        follower = Constants.createFollower(opMode.hardwareMap);
-        // TODO: set it with limelight if possible, else default)
-        // just loop in int, trying to find it, and if not found,
-        // set it to new here?
-        // or have them set the starting position manually if limelight can't
-        // find it
-        // (and also let them disable limit switches, etc.)
-        // TODO: prev.
-        follower.setStartingPose(new Pose());
-        follower.update();
-        follower.startTeleopDrive();
+        // follower = Constants.createFollower(opMode.hardwareMap);
+        // // TODO: set it with limelight if possible, else default)
+        // // just loop in int, trying to find it, and if not found,
+        // // set it to new here?
+        // // or have them set the starting position manually if limelight can't
+        // // find it
+        // // (and also let them disable limit switches, etc.)
+        // // TODO: prev.
+        // follower.setStartingPose(new Pose());
+        // follower.update();
+        // follower.startTeleopDrive();
     }
 
     /**
      * Updates the follower
      */
     public void update() {
-        follower.update();
+        // follower.update();
     }
 
     /**
      * Stops the robot
      */
     public void stopRobot() {
-        // setPower(0, 0, 0, 0);
-        follower.setTeleOpDrive(0, 0, 0, true);
+        setPower(0, 0, 0, 0);
+        // follower.setTeleOpDrive(0, 0, 0, true);
     }
 
-    public void setDrive(double x, double y, double yaw) {
-        follower.setTeleOpDrive(x, y, yaw, true);
+    // public void setDrive(double x, double y, double yaw) {
+    //     // follower.setTeleOpDrive(x, y, yaw, true);
+    // }
+
+    private boolean aiming = false;
+    public boolean aimTarget() {
+        // TODO: store angle, and calculate power to go to that angle
+        aiming = true;
+        if (limelight.resultValid()) {
+            // if tx > 0, turn left, if < 0, turn right
+            // tx / 30
+            // anything < 30 will be a corresponding fraction, > 30 will just be full power
+            moveRobot(0, 0, limelight.result().getTx() / 30);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -76,11 +93,14 @@ public class Drive {
             swapFront = -1;
         }
 
+        // TODO: move dirvepower and swapfront to moveRobot
+
         // TODO: test robot vs field centric
         // follower.setTeleOpDrive(layout.driveForwardAmount() * swapFront * drivePower,
         //   layout.driveStrafeAmount() * swapFront * drivePower, layout.driveYawAmount() * drivePower, true);
-        moveRobot(layout.driveForwardAmount() * swapFront * drivePower,
-                layout.driveStrafeAmount() * swapFront * drivePower, -layout.driveYawAmount() * drivePower);
+        moveRobot(layout.driveForwardAmount(),
+                layout.driveStrafeAmount(),
+                -layout.driveYawAmount());
     }
 
     /**
@@ -96,25 +116,39 @@ public class Drive {
         // or add another method, moveRobotDirectional, which also
         // takes a reverse parameter, and calls this
 
+        if (aiming) {
+            if (Math.abs(x + y + yaw) > .3) {
+                opMode.telemetry.addLine("not aiming");
+                aiming = false;
+            } else {
+                opMode.telemetry.addLine("aiming");
+                return;
+            }
+        }
+
+        x *= swapFront * drivePower;
+        y *= swapFront * drivePower;
+        yaw *= drivePower; 
+
         double leftFrontPower = x - y + yaw;
         double leftRearPower = x + y + yaw;
         double rightFrontPower = x + y - yaw;
         double rightRearPower = x - y - yaw;
 
         // Normalize wheel powers to be less than 1.0
-        // double max = Arrays.stream(
-        //                 new double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower})
-        //         .map(Math::abs)
-        //         .max()
-        //         .getAsDouble();
+        double max = Arrays.stream(
+                        new double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower})
+                .map(Math::abs)
+                .max()
+                .getAsDouble();
 
-        // if (max > 1.0) {
-        //     Arrays.stream(new Double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower}).map(n -> n /= max);
-        //     leftFrontPower /= max;
-        //     rightFrontPower /= max;
-        //     leftRearPower /= max;
-        //     rightRearPower /= max;
-        // }
+        if (max > 1.0) {
+            Arrays.stream(new Double[]{leftFrontPower, leftRearPower, rightFrontPower, rightRearPower}).map(n -> n /= max);
+            leftFrontPower /= max;
+            rightFrontPower /= max;
+            leftRearPower /= max;
+            rightRearPower /= max;
+        }
 
         setPower(leftFrontPower, leftRearPower, rightFrontPower, rightRearPower);
     }

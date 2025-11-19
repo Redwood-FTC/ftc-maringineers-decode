@@ -42,6 +42,18 @@ public class Limelight {
         } else {
             validResult = null;
         }
+
+        // opMode.telemetry.addData(
+        if (result.isValid()) {
+            // telemetryM.debug("pose", result.getBotpose().toString());
+            opMode.telemetry.addData("pose", result.getBotpose().toString());
+            opMode.telemetry.addData("tx", result.getTx());
+            opMode.telemetry.addData("txnc", result.getTxNC());
+            opMode.telemetry.addData("ty", result.getTy());
+            opMode.telemetry.addData("tync", result.getTyNC());
+        } else {
+            opMode.telemetry.addLine("no pose");
+        }
     }
 
     /**
@@ -51,6 +63,10 @@ public class Limelight {
      */
     public boolean resultValid() {
         return resultValid;
+    }
+
+    public LLResult result() {
+        return validResult;
     }
 
     /**

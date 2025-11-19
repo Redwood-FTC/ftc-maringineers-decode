@@ -11,9 +11,17 @@ public class Launch {
     private Hardware hardware;
     private OpMode opMode;
     private Layout layout;
+    private Drive drive;
+    private Intake intake;
+    private Belt belt;
 
     private double FAST_SPEED = 0.60;
     private double SLOW_SPEED = 0.4;
+
+    private int queue = 0;
+    private double queueTime = 0;
+    // false => launchLow
+    private boolean launchHigh = true;
 
     /**
      * Initialises the OpMode, Hardware, and Layout objects.
@@ -22,27 +30,110 @@ public class Launch {
      * @param hardware the Hardware object
      * @param layout   the Layout object
      */
-    public Launch(OpMode opMode, Hardware hardware, Layout layout) {
+    public Launch(OpMode opMode, Hardware hardware, Layout layout, Drive drive, Intake intake, Belt belt) {
         this.opMode = opMode;
         this.hardware = hardware;
         this.layout = layout;
+        this.drive = drive;
+        this.intake = intake;
+        this.belt = belt;
     }
 
     /**
      * Updates the launch mechanism.
      */
+    private boolean firePressed = false;
     public void runGamepad() {
-        if (layout.launchHigh()) {
-            spinFast();
-        } else if (layout.launchLow()) {
-            spinSlow();
-        } else if (layout.launchReverse()) {
+        // opMode.telemetry.addData("left vel: ", hardware.leftLaunchMotor.getVelocity());
+        // opMode.telemetry.addData("right vel: ", hardware.rightLaunchMotor.getVelocity());
+        opMode.telemetry.addData("queue: ", queue);
+        opMode.telemetry.addData("queueTime: ", queueTime);
+
+        opMode.telemetry.addData("left speed: ", hardware.leftLaunchMotor.getPower());
+        opMode.telemetry.addData("right speed: ", hardware.rightLaunchMotor.getPower());
+
+        if (layout.launchReverse()) {
             spinReverse();
+            return;
+        } else if (layout.launchHigh()) {
+            launchHigh = true;
+        } else if (layout.launchLow()) {
+            launchHigh = false;
+        }
+
+        if (layout.aim()) {
+            spinSlow();
+        } else if (layout.fire()) {
+            spinFast();
         } else {
             stop();
-            // spin(layout.launchPower());
         }
+
+        if (!firePressed) {
+            return;
+        }
+
+        if (firePressed) {
+            return;
+        }
+
+        if (layout.aim()) {
+            drive.aimTarget();
+        }
+
+        if (launchHigh) {
+            opMode.telemetry.addLine("high");
+        } else {
+            opMode.telemetry.addLine("low");
+        }
+
+        if (layout.fire() && !firePressed) {
+            firePressed = true;
+            queue += 1;
+            if (queue > 3) {
+                queue = 3;
+            }
+            // spinFast(); // TODO: proper speed control, and launch queueing
+        } else if (!layout.fire()) {
+            firePressed = false;
+        }
+
+        if (opMode.time - queueTime < 0.5) {
+        } else if (opMode.time - queueTime -.5 < .5 * queue) {
+            if (launchHigh) {
+                spinFast();
+            } else {
+                spinSlow();
+            }
+            intake.in();
+            belt.runFull();
+        } else {
+            queueTime = 0;
+            queue = 0;
+            stop();
+        }
+        
+        // else if (layout.launchReverse()) {
+        // } else {
+        //     stop();
+        //     // spin(layout.launchPower());
+        // }
     }
+
+    // public void run() {
+    //     if (layout.aim()) {
+    //         drive.aimTarget();
+    //     }
+
+    //     if (layout.fire()) {
+    //         spinFast(); // TODO: proper speed control, and launch queueing
+    //     }
+
+    //     // if aim() do the drive aim thing
+    //     // if fire, todo --- for now as a temp just spinfast
+    // }
+
+    // TODO: method to see if it's at the correct speed
 
     // TODO: warm_up mechanism
 

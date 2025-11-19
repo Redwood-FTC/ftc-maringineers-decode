@@ -49,13 +49,12 @@ public class Control {
         this.opMode = opMode;
         layout = new Layout(opMode);
         hardware = new Hardware(opMode);
-        drive = new Drive(opMode, hardware, layout);
         tel = new Tel(opMode, hardware);
-        launch = new Launch(opMode, hardware, layout);
         intake = new Intake(opMode, hardware, layout);
         belt = new Belt(opMode, hardware, layout);
-        // TODO
         limelight = new Limelight(opMode, hardware);
+        drive = new Drive(opMode, hardware, layout, limelight);
+        launch = new Launch(opMode, hardware, layout, drive, intake, belt);
 
         telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
 
@@ -92,29 +91,30 @@ public class Control {
         switch (menu.selected()) {
             case RED_FRONT:
             case BLUE_FRONT:
+            // TODO: drive functions in drive, rather than setting powers here
                 // for front:move (forward?) for so long, fire
-                if (opMode.time < 1) {
-                    drive.setDrive(.25, 0, 0);
-                } else if (opMode.time < 1.5) {
-                    drive.setDrive(0, 0, 0);
-                    launch.spinSlow();
-                } else {
-                    launch.spinSlow();
-                    belt.runFull();
-                }
+                // if (opMode.time < 1) {
+                //     drive.setDrive(.25, 0, 0);
+                // } else if (opMode.time < 1.5) {
+                //     drive.setDrive(0, 0, 0);
+                //     launch.spinSlow();
+                // } else {
+                //     launch.spinSlow();
+                //     belt.runFull();
+                // }
                 break;
             case RED_REAR:
                 // just immediately go?
                 // telemetry.addLine(" Selected RED_REAR");
                 // break;
             case BLUE_REAR:
-                if (opMode.time < .5) {
-                    drive.setDrive(0, 0, 0);
-                    launch.spinFast();
-                } else {
-                    launch.spinFast();
-                    belt.runFull();
-                }
+                // if (opMode.time < .5) {
+                //     drive.setDrive(0, 0, 0);
+                //     launch.spinFast();
+                // } else {
+                //     launch.spinFast();
+                //     belt.runFull();
+                // }
                 break;
         }
     }
@@ -126,11 +126,8 @@ public class Control {
         if (runMenu) {
             menu.update();
             return;
-        } else {
-            telemetryM.update();
-            tel.update();
         }
-        opMode.telemetry.addData("MENU: ", runMenu);
+        // opMode.telemetry.addData("MENU: ", runMenu);
 
         if (runAuto) {
             auto();
@@ -140,6 +137,8 @@ public class Control {
         if (started) {
             run();
         }
+
+        opMode.telemetry.addLine("running");
 
         // // TODO: move to tel
         // telemetryM.debug("position", follower.getPose());
@@ -152,9 +151,21 @@ public class Control {
         telemetryM.debug("driveStrafeAmount", layout.driveStrafeAmount());
         telemetryM.debug("driveYawAmount", layout.driveYawAmount());
 
-        if (limelight.resultValid()) {
-            telemetryM.debug("pose", limelight.pose().toString());
-        }
+        // if (limelight.resultValid()) {
+        //     telemetryM.debug("pose", limelight.pose().toString());
+        //     opMode.telemetry.addData("pose", limelight.pose());
+        //     opMode.telemetry.addData("tx", limelight.getTx());
+        //     opMode.telemetry.addData("txnc", limelight.getTxNC());
+        //     opMode.telemetry.addData("ty", limelight.getTy());
+        //     opMode.telemetry.addData("tync", limelight.getTyNC());
+        // } else {
+        //     opMode.telemetry.addLine("no pose");
+        // }
+
+        opMode.telemetry.addData("time: ", opMode.time);
+
+        telemetryM.update();
+        tel.update();
     }
 
     /**
