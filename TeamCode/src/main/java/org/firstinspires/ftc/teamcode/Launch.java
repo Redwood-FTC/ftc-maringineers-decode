@@ -61,25 +61,25 @@ public class Launch {
             launchHigh = false;
         }
 
-        if (layout.aim()) {
-            spinSlow();
-        } else if (layout.fire()) {
-            spinFast();
-        } else {
-            stop();
-        }
+        // if (layout.aim()) {
+        //     spinSlow();
+        // } else if (layout.fire()) {
+        //     spinFast();
+        // } else {
+        //     stop();
+        // }
 
-        if (!firePressed) {
-            return;
-        }
+        // if (!firePressed) {
+        //     return;
+        // }
 
-        if (firePressed) {
-            return;
-        }
+        // if (firePressed) {
+        //     return;
+        // }
 
-        if (layout.aim()) {
-            drive.aimTarget();
-        }
+        // if (layout.aim()) {
+        //     drive.aimTarget();
+        // }
 
         if (launchHigh) {
             opMode.telemetry.addLine("high");
@@ -89,6 +89,11 @@ public class Launch {
 
         if (layout.fire() && !firePressed) {
             firePressed = true;
+
+            if (queue == 0) {
+                queueTime = opMode.time;
+            }
+
             queue += 1;
             if (queue > 3) {
                 queue = 3;
@@ -98,8 +103,17 @@ public class Launch {
             firePressed = false;
         }
 
+        if (queue == 0) {
+            return;
+        }
+
         if (opMode.time - queueTime < 0.5) {
-        } else if (opMode.time - queueTime -.5 < .5 * queue) {
+            if (launchHigh) {
+                spinFast();
+            } else {
+                spinSlow();
+            }
+        } else if (opMode.time - queueTime <.5 + .5 * queue) {
             if (launchHigh) {
                 spinFast();
             } else {
