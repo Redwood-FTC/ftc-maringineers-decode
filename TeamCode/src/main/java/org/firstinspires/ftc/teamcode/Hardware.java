@@ -111,12 +111,13 @@ public class Hardware {
             // temporary, for debugging position
             motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
-        for (DcMotorEx motor : new DcMotorEx[]{
-            leftLaunchMotor, rightLaunchMotor,
-            }) {
-            motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
+        // for (DcMotorEx motor : new DcMotorEx[]{
+        //     leftLaunchMotor, rightLaunchMotor,
+        //     }) {
+        //     motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        // }
         for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor,
+            leftLaunchMotor, rightLaunchMotor,
                 rightFrontDriveMotor, rightRearDriveMotor,
             beltMotor}) {
             motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

@@ -15,8 +15,8 @@ public class Launch {
     private Intake intake;
     private Belt belt;
 
-    private double FAST_SPEED = 0.60;
-    private double SLOW_SPEED = 0.4;
+    private double FAST_SPEED = 0.55;
+    private double SLOW_SPEED = 0.45;
 
     private int queue = 0;
     private double queueTime = 0;
@@ -61,25 +61,25 @@ public class Launch {
             launchHigh = false;
         }
 
-        // if (layout.aim()) {
-        //     spinSlow();
-        // } else if (layout.fire()) {
-        //     spinFast();
-        // } else {
-        //     stop();
-        // }
+        if (layout.aim()) {
+            spinSlow();
+        } else if (layout.fire()) {
+            spinFast();
+        } else {
+            stop();
+        }
 
-        // if (!firePressed) {
-        //     return;
-        // }
+        if (!firePressed) {
+            return;
+        }
 
-        // if (firePressed) {
-        //     return;
-        // }
+        if (firePressed) {
+            return;
+        }
 
-        // if (layout.aim()) {
-        //     drive.aimTarget();
-        // }
+        if (layout.aim()) {
+            drive.aimTarget();
+        }
 
         if (launchHigh) {
             opMode.telemetry.addLine("high");
