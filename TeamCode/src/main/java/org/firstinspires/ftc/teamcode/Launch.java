@@ -67,7 +67,6 @@ public class Launch {
         if (!firePressed) {
             return;
         }
-
         if (firePressed) {
             return;
         }
@@ -96,17 +95,33 @@ public class Launch {
             return;
         }
 
-        if (opMode.time - queueTime < 0.5) {
-            spinSlow();
-        } else if (opMode.time - queueTime < .5 + .5 * queue) {
-            spinSlow();
-
+        if (opMode.time - queueTime < 1) {
+            if (launchHigh) {
+                spinFast();
+            } else {
+                spinSlow();
+            }
+        } else if (opMode.time - queueTime <1 + 1) {
+            if (launchHigh) {
+                spinFast();
+            } else {
+                spinSlow();
+            }
             intake.in();
-            belt.runFull();
+            belt.launch();
         } else {
+            queue -= 1;
+            queueTime = opMode.time;
+            // queueTime = 0;
+            // queue = 0;
+            // stop();
+            // belt.stop();
+        }
+
+        if (queue == 0) {
             queueTime = 0;
-            queue = 0;
             stop();
+            belt.stop();
         }
 
         // else if (layout.launchReverse()) {
