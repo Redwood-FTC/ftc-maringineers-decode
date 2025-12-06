@@ -20,8 +20,6 @@ public class Launch {
 
     private int queue = 0;
     private double queueTime = 0;
-    // false => launchLow
-    private boolean launchHigh = true;
 
     /**
      * Initialises the OpMode, Hardware, and Layout objects.
@@ -43,6 +41,7 @@ public class Launch {
      * Updates the launch mechanism.
      */
     private boolean firePressed = false;
+
     public void runGamepad() {
         // opMode.telemetry.addData("left vel: ", hardware.leftLaunchMotor.getVelocity());
         // opMode.telemetry.addData("right vel: ", hardware.rightLaunchMotor.getVelocity());
@@ -55,10 +54,6 @@ public class Launch {
         if (layout.launchReverse()) {
             spinReverse();
             return;
-        } else if (layout.launchHigh()) {
-            launchHigh = true;
-        } else if (layout.launchLow()) {
-            launchHigh = false;
         }
 
         if (layout.aim()) {
@@ -79,12 +74,6 @@ public class Launch {
 
         if (layout.aim()) {
             drive.aimTarget();
-        }
-
-        if (launchHigh) {
-            opMode.telemetry.addLine("high");
-        } else {
-            opMode.telemetry.addLine("low");
         }
 
         if (layout.fire() && !firePressed) {
@@ -108,17 +97,10 @@ public class Launch {
         }
 
         if (opMode.time - queueTime < 0.5) {
-            if (launchHigh) {
-                spinFast();
-            } else {
-                spinSlow();
-            }
-        } else if (opMode.time - queueTime <.5 + .5 * queue) {
-            if (launchHigh) {
-                spinFast();
-            } else {
-                spinSlow();
-            }
+            spinSlow();
+        } else if (opMode.time - queueTime < .5 + .5 * queue) {
+            spinSlow();
+
             intake.in();
             belt.runFull();
         } else {
@@ -126,7 +108,7 @@ public class Launch {
             queue = 0;
             stop();
         }
-        
+
         // else if (layout.launchReverse()) {
         // } else {
         //     stop();

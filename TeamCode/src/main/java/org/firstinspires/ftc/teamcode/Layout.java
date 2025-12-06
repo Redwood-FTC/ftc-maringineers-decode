@@ -27,36 +27,36 @@ public class Layout {
      *
      * @return whether or not a is pressed
      */
-    public boolean launchHigh() {
+    public boolean ShortSpinBelt() {
         return gamepad1.dpad_right;
     }
 
     public boolean launchLow() {
-      return gamepad1.dpad_left;
+        return gamepad1.dpad_left;
     }
 
     public boolean aim() {
-      return gamepad1.left_bumper;
+        return gamepad1.left_bumper;
     }
 
     public boolean fire() {
-      return gamepad1.right_bumper;
+        return gamepad1.right_bumper;
     }
 
     public boolean launchReverse() {
-      return gamepad1.b;
+        return gamepad1.b;
     }
 
     public double launchPower() {
-      return -gamepad1.right_stick_x;
+        return -gamepad1.right_stick_x;
     }
 
     public boolean frontFront() {
-      return gamepad1.x;
+        return gamepad1.x;
     }
 
     public boolean frontBack() {
-      return gamepad1.y;
+        return gamepad1.y;
     }
 
     /**
@@ -69,30 +69,31 @@ public class Layout {
     }
 
     public boolean intakeBackward() {
-      return gamepad1.dpad_down;
+        return gamepad1.dpad_down;
     }
 
     public boolean intakeStop() {
-      return gamepad1.a;
+        return gamepad1.a;
     }
 
     public double beltPower() {
-      return -gamepad1.right_stick_y;
+        return -gamepad1.right_stick_y;
     }
 
     public boolean menuUp() {
-      return gamepad1.dpad_up;
+        return gamepad1.dpad_up;
     }
 
     public boolean menuDown() {
-      return gamepad1.dpad_down;
+        return gamepad1.dpad_down;
     }
 
     public boolean menuSelect() {
-      return gamepad1.a;
+        return gamepad1.a;
     }
 
     // TODO: tune this, so it feels better
+
     /**
      * Controls driving the robot forward/back.
      *

@@ -18,6 +18,7 @@ public class Belt {
     private Layout layout;
 
     private double BELT_SPEED = 1.0;
+    private double timeRemaining = 0.0;
 
     /**
      * Initialises the OpMode, Hardware, and Layout.
@@ -55,6 +56,16 @@ public class Belt {
 
     public void runFull() {
         hardware.beltMotor.setPower(BELT_SPEED);
+    }
+
+    public void shortSpinBelt() {
+        if (runtime.seconds - timeRemaining > 0) {
+            hardware.beltMotor.setPower(BELT_SPEED);
+        } else {
+            timeRemaining = 0.25;
+        }
+
+        timeRemaining = 0.0;
     }
 
     /**
