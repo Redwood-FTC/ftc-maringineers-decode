@@ -15,7 +15,7 @@ public class Launch {
     private Intake intake;
     private Belt belt;
 
-    private double FAST_SPEED = 0.5;
+    private double FAST_SPEED = 0.52;
     private double SLOW_SPEED = 0.45;
 
     private int queue = 0;
