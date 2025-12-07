@@ -48,7 +48,7 @@ public class Belt {
     // }
 
     /**
-     * Makes the belt motor spin.
+     * Manually controlling the belt from the gamepad.
      */
     public void runGamepad() {
         hardware.beltMotor.setPower(layout.beltPower());
@@ -68,6 +68,9 @@ public class Belt {
         }
     }
 
+    /**
+     * Set belt to BELT_SPEED power
+     */
     public void runFull() {
         hardware.beltMotor.setPower(BELT_SPEED);
     }

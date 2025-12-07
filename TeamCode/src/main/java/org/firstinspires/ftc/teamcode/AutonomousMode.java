@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+// Reed said launch speed should be .5, go to midfield and launch from there
+
 /**
  * Manages the robot's autonomous.
  */
@@ -24,18 +26,18 @@ public class AutonomousMode extends OpMode {
      * For code that runs CONTINUOUSLY during Init.
      */
     public void init_loop() {
-      control.update();
+        control.update();
     }
 
     /**
      * Run autonomous.
      */
     public void start() {
-      control.runAuto();
+        control.runAuto();
     }
 
     public void loop() {
-      control.update();
+        control.update();
     }
 
     /**

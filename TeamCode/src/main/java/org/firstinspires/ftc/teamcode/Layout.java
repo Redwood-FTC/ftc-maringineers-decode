@@ -94,7 +94,7 @@ public class Layout {
     }
 
     /**
-     * Move the .
+     * Move the intake forward.
      *
      * @return whether or not dpad up is pressed
      */
@@ -102,26 +102,56 @@ public class Layout {
         return gamepad1.dpad_up;
     }
 
+    /**
+     * Move the intake backward
+     *
+     * @return whether or not dpad down is pressed
+     */
     public boolean intakeBackward() {
         return gamepad1.dpad_down;
     }
 
+    /**
+     * Stop the intake
+     *
+     * @return whether or not a is pressed
+     */
     public boolean intakeStop() {
         return gamepad1.a;
     }
 
+    /**
+     * Set the belt power
+     *
+     * @return the reversed y value of the right joystick
+     */
     public double beltPower() {
         return -gamepad1.right_stick_y;
     }
 
+    /**
+     * Increase the menu by one
+     *
+     * @return whether or not dpad up is pressed
+     */
     public boolean menuUp() {
         return gamepad1.dpad_up;
     }
 
+    /**
+     * Decrease by menu by one
+     *
+     * @return whether or not dpad down is pressed
+     */
     public boolean menuDown() {
         return gamepad1.dpad_down;
     }
 
+    /**
+     * Not sure what this does
+     *
+     * @return whether or not a is pressed
+     */
     public boolean menuSelect() {
         return gamepad1.a;
     }
