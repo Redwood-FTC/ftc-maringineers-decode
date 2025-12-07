@@ -18,7 +18,7 @@ public class Belt {
     private Layout layout;
 
     private double BELT_SPEED = 1.0;
-    private double timeRemaining = 0.0;
+    private double beltEndTime = 0;
 
     /**
      * Initialises the OpMode, Hardware, and Layout.
@@ -52,21 +52,26 @@ public class Belt {
      */
     public void runGamepad() {
         hardware.beltMotor.setPower(layout.beltPower());
+
+        if (layout.shortSpinBelt()) {
+            double now = opMode.getRuntime();
+
+            if (layout.shortSpinBelt()) {
+                beltEndTime = now + 0.25;
+            }
+
+            if (now < beltEndTime) {
+                hardware.beltMotor.setPower(BELT_SPEED);
+            } else {
+                hardware.beltMotor.setPower(0.0);
+            }
+        }
     }
 
     public void runFull() {
         hardware.beltMotor.setPower(BELT_SPEED);
     }
 
-    public void shortSpinBelt() {
-        if (runtime.seconds - timeRemaining > 0) {
-            hardware.beltMotor.setPower(BELT_SPEED);
-        } else {
-            timeRemaining = 0.25;
-        }
-
-        timeRemaining = 0.0;
-    }
 
     /**
      * Stops the belt motor.

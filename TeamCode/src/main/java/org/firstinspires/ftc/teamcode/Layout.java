@@ -23,46 +23,80 @@ public class Layout {
     }
 
     /**
-     * Controlling the launch mechanism.
+     * Spin the belt for a quarter second.
      *
-     * @return whether or not a is pressed
+     * @return whether or not dpad right is pressed
      */
-    public boolean ShortSpinBelt() {
+    public boolean shortSpinBelt() {
         return gamepad1.dpad_right;
     }
 
+    /**
+     * Launch the ball low
+     *
+     * @return whether or not dpad left is pressed
+     */
     public boolean launchLow() {
         return gamepad1.dpad_left;
     }
 
+    /**
+     * Drive to launch position
+     *
+     * @return Whether or not left bumper is pressed
+     */
     public boolean aim() {
         return gamepad1.left_bumper;
     }
 
+    /**
+     * Launch the ball
+     *
+     * @return whether or not right bumper is pressed
+     */
     public boolean fire() {
         return gamepad1.right_bumper;
     }
 
+    /**
+     * Intake the ball
+     *
+     * @return whether or not b is pressed
+     */
     public boolean launchReverse() {
         return gamepad1.b;
     }
 
+    /**
+     *
+     * @return
+     */
     public double launchPower() {
         return -gamepad1.right_stick_x;
     }
 
+    /**
+     * Change the front to the front of the robot
+     *
+     * @return whether or not x is pressed
+     */
     public boolean frontFront() {
         return gamepad1.x;
     }
 
+    /**
+     * Change the front to the back of the robot
+     *
+     * @return whether or not y is pressed
+     */
     public boolean frontBack() {
         return gamepad1.y;
     }
 
     /**
-     * Controlling the intake mechanism.
+     * Move the .
      *
-     * @return whether or not b is pressed
+     * @return whether or not dpad up is pressed
      */
     public boolean intakeForward() {
         return gamepad1.dpad_up;
