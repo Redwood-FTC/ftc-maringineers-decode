@@ -19,7 +19,7 @@ public class Drive {
 
     // private Follower follower;
 
-    private int swapFront = 1;
+    private int swapFront = -1;
     private double drivePower = 1;
 
     /**
@@ -69,6 +69,7 @@ public class Drive {
     // }
 
     private boolean aiming = false;
+
     public boolean aimTarget() {
         // TODO: store angle, and calculate power to go to that angle
         aiming = true;
@@ -128,7 +129,7 @@ public class Drive {
 
         x *= swapFront * drivePower;
         y *= swapFront * drivePower;
-        yaw *= drivePower; 
+        yaw *= drivePower;
 
         double leftFrontPower = x - y + yaw;
         double leftRearPower = x + y + yaw;
