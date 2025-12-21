@@ -71,64 +71,64 @@ public class Launch {
             return;
         }
 
-        if (layout.aim()) {
-            drive.aimTarget();
-        }
-
-        if (layout.fire() && !firePressed) {
-            firePressed = true;
-
-            if (queue == 0) {
-                queueTime = opMode.time;
-            }
-
-            queue += 1;
-            if (queue > 3) {
-                queue = 3;
-            }
-            // spinFast(); // TODO: proper speed control, and launch queueing
-        } else if (!layout.fire()) {
-            firePressed = false;
-        }
-
-        if (queue == 0) {
-            return;
-        }
-
-        if (opMode.time - queueTime < 1) {
-            if (launchHigh) {
-                spinFast();
-            } else {
-                spinSlow();
-            }
-        } else if (opMode.time - queueTime <1 + 1) {
-            if (launchHigh) {
-                spinFast();
-            } else {
-                spinSlow();
-            }
-            intake.in();
-            belt.launch();
-        } else {
-            queue -= 1;
-            queueTime = opMode.time;
-            // queueTime = 0;
-            // queue = 0;
-            // stop();
-            // belt.stop();
-        }
-
-        if (queue == 0) {
-            queueTime = 0;
-            stop();
-            belt.stop();
-        }
-
-        // else if (layout.launchReverse()) {
-        // } else {
-        //     stop();
-        //     // spin(layout.launchPower());
+        // if (layout.aim()) {
+        //     drive.aimTarget();
         // }
+
+        // if (layout.fire() && !firePressed) {
+        //     firePressed = true;
+
+        //     if (queue == 0) {
+        //         queueTime = opMode.time;
+        //     }
+
+        //     queue += 1;
+        //     if (queue > 3) {
+        //         queue = 3;
+        //     }
+        //     // spinFast(); // TODO: proper speed control, and launch queueing
+        // } else if (!layout.fire()) {
+        //     firePressed = false;
+        // }
+
+        // if (queue == 0) {
+        //     return;
+        // }
+
+        // if (opMode.time - queueTime < 1) {
+        //     if (launchHigh) {
+        //         spinFast();
+        //     } else {
+        //         spinSlow();
+        //     }
+        // } else if (opMode.time - queueTime <1 + 1) {
+        //     if (launchHigh) {
+        //         spinFast();
+        //     } else {
+        //         spinSlow();
+        //     }
+        //     intake.in();
+        //     belt.launch();
+        // } else {
+        //     queue -= 1;
+        //     queueTime = opMode.time;
+        //     // queueTime = 0;
+        //     // queue = 0;
+        //     // stop();
+        //     // belt.stop();
+        // }
+
+        // if (queue == 0) {
+        //     queueTime = 0;
+        //     stop();
+        //     belt.stop();
+        // }
+
+        // // else if (layout.launchReverse()) {
+        // // } else {
+        // //     stop();
+        // //     // spin(layout.launchPower());
+        // // }
     }
 
     // public void run() {
