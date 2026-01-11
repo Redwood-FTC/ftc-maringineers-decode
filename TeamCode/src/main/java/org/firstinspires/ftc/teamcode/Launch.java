@@ -182,4 +182,3 @@ public class Launch {
         hardware.rightLaunchMotor.setPower(-1.0);
     }
 }
-

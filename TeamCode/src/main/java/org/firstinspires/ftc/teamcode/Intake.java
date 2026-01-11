@@ -68,4 +68,3 @@ public class Intake {
         hardware.intakeServo.setPosition(0.5);
     }
 }
-

@@ -94,7 +94,7 @@ public class Drive {
             swapFront = -1;
         }
 
-        // TODO: move dirvepower and swapfront to moveRobot
+        // TODO: move drivepower and swapfront to moveRobot
 
         // TODO: test robot vs field centric
         // follower.setTeleOpDrive(layout.driveForwardAmount() * swapFront * drivePower,
