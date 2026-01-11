@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 // TODO: what in the world does 'group' even do
 
 /**
- * The primary drive mode class. Most of the code is encapsulated in other classes, this shoul just
+ * The primary drive mode class. Most of the code is encapsulated in other classes, this should just
  * initialise it.
  */
 @TeleOp(name = "Drive Mode", group = "Drive")

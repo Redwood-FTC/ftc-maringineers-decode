@@ -65,7 +65,6 @@ public class Hardware {
         limelight = opMode.hardwareMap.get(Limelight3A.class, "limelight");
     }
 
-
     /**
      * Initialises the servos.
      */
@@ -120,9 +119,9 @@ public class Hardware {
         //     motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         // }
         for (DcMotorEx motor : new DcMotorEx[]{leftFrontDriveMotor, leftRearDriveMotor,
-            leftLaunchMotor, rightLaunchMotor,
+                leftLaunchMotor, rightLaunchMotor,
                 rightFrontDriveMotor, rightRearDriveMotor,
-            beltMotor}) {
+                beltMotor}) {
             motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         }
         for (DcMotorEx motor : new DcMotorEx[]{}) {

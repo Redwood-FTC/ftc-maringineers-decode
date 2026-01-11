@@ -54,11 +54,11 @@ public class Belt {
      * Manually controlling the belt from the gamepad.
      */
     public void runGamepad() {
-      // if (Math.abs(layout.beltPower()) > .2) {
-      //   launch = false;
-      // }
+        // if (Math.abs(layout.beltPower()) > .2) {
+        //   launch = false;
+        // }
 
-      // if (!launch) {
+        // if (!launch) {
         hardware.beltMotor.setPower(layout.beltPower());
 
         double now = opMode.getRuntime();
@@ -75,8 +75,8 @@ public class Belt {
         } else {
             hardware.beltMotor.setPower(layout.beltPower());
         }
-    // }
-  }
+        // }
+    }
 
     /**
      * Set belt to BELT_SPEED power
@@ -84,13 +84,12 @@ public class Belt {
     public void runFull() {
         hardware.beltMotor.setPower(BELT_SPEED);
     }
-
-
+    
     /**
      * Stops the belt motor.
      */
     public void stop() {
-      // launch = false;
+        // launch = false;
         hardware.beltMotor.setPower(0.0);
     }
 }

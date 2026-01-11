@@ -47,7 +47,6 @@ public class Menu {
                     selected = Position.BLUE_REAR;
                     break;
             }
-            ;
         }
 
         if (layout.menuUp() && !pressed) {
@@ -98,4 +97,3 @@ public class Menu {
         return selected;
     }
 }
-

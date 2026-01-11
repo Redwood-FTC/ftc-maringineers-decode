@@ -17,7 +17,6 @@ public class Limelight {
     private boolean resultValid;
     private TelemetryManager telemetryM;
 
-
     /**
      * Sets the limelight pipeline and turns it on.
      *

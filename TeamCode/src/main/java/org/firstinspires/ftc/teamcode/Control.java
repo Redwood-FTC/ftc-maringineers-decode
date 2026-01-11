@@ -89,7 +89,7 @@ public class Control {
         switch (menu.selected()) {
             case RED_FRONT:
             case BLUE_FRONT:
-            // TODO: drive functions in drive, rather than setting powers here
+                // TODO: drive functions in drive, rather than setting powers here
                 // for front:move (forward?) for so long, fire
                 // if (opMode.time < 1) {
                 //     drive.setDrive(.25, 0, 0);
@@ -138,7 +138,7 @@ public class Control {
 
         opMode.telemetry.addLine("running");
 
-        // // TODO: move to tel
+        // TODO: move to tel
         // telemetryM.debug("position", follower.getPose());
         // telemetryM.debug("velocity", follower.getVelocity());
 
