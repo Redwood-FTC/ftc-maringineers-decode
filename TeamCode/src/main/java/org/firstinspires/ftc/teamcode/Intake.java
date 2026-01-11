@@ -8,6 +8,8 @@ import org.firstinspires.ftc.teamcode.layout.Layout;
  * Controls the intake mechanism.
  */
 public class Intake {
+    // CLASS IS DEPRECATED
+
     private Hardware hardware;
     private OpMode opMode;
     private Layout layout;

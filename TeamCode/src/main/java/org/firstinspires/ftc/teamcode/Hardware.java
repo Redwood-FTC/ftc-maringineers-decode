@@ -37,6 +37,9 @@ public class Hardware {
 
     public Servo intakeServo;
 
+    // actually leds
+    public Servo canShootLedServo;
+
     public Limelight3A limelight;
 
     /**
@@ -67,10 +70,10 @@ public class Hardware {
      * Initialises the servos.
      */
     private void initServos() {
-        intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
-
-        for (Servo servo : new Servo[]{}) {
-            servo.setDirection(Servo.Direction.REVERSE);
+        // intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
+        canShootLedServo = opMode.hardwareMap.get(Servo.class, "canShootLedServo");
+        for (Servo servo : new Servo[]{canShootLedServo}) {
+            servo.setDirection(Servo.Direction.FORWARD);
         }
     }
 

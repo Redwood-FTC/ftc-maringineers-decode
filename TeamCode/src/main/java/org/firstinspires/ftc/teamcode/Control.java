@@ -25,7 +25,6 @@ public class Control {
     private OpMode opMode;
     private Limelight limelight;
     private Launch launch;
-    private Intake intake;
     private Belt belt;
 
     private Menu menu;
@@ -46,17 +45,16 @@ public class Control {
      * @param opMode the OpMode object
      */
     public Control(OpMode opMode) {
+        telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
         this.opMode = opMode;
         layout = new Layout(opMode);
         hardware = new Hardware(opMode);
         tel = new Tel(opMode, hardware);
-        intake = new Intake(opMode, hardware, layout);
         belt = new Belt(opMode, hardware, layout);
-        limelight = new Limelight(opMode, hardware);
+        limelight = new Limelight(opMode, hardware, telemetryM);
         drive = new Drive(opMode, hardware, layout, limelight);
-        launch = new Launch(opMode, hardware, layout, drive, intake, belt);
+        launch = new Launch(opMode, hardware, layout, drive, belt, telemetryM);
 
-        telemetryM = PanelsTelemetry.INSTANCE.getTelemetry();
 
         update();
     }
@@ -176,7 +174,6 @@ public class Control {
         limelight.update();
         drive.gamepadDrive();
         launch.runGamepad();
-        intake.runGamepad();
         belt.runGamepad();
     }
 }

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.bylazar.telemetry.TelemetryManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.layout.Layout;
@@ -12,8 +13,8 @@ public class Launch {
     private OpMode opMode;
     private Layout layout;
     private Drive drive;
-    private Intake intake;
     private Belt belt;
+    private TelemetryManager telemetryM;
 
     private double FAST_SPEED = 0.52;
     private double SLOW_SPEED = 0.45;
@@ -28,13 +29,13 @@ public class Launch {
      * @param hardware the Hardware object
      * @param layout   the Layout object
      */
-    public Launch(OpMode opMode, Hardware hardware, Layout layout, Drive drive, Intake intake, Belt belt) {
+    public Launch(OpMode opMode, Hardware hardware, Layout layout, Drive drive, Belt belt, TelemetryManager telemetryM) {
         this.opMode = opMode;
         this.hardware = hardware;
         this.layout = layout;
         this.drive = drive;
-        this.intake = intake;
         this.belt = belt;
+        this.telemetryM = telemetryM;
     }
 
     /**
@@ -48,8 +49,10 @@ public class Launch {
         opMode.telemetry.addData("queue: ", queue);
         opMode.telemetry.addData("queueTime: ", queueTime);
 
-        opMode.telemetry.addData("left speed: ", hardware.leftLaunchMotor.getPower());
-        opMode.telemetry.addData("right speed: ", hardware.rightLaunchMotor.getPower());
+        // opMode.telemetry.addData("left speed: ", hardware.leftLaunchMotor.getPower());
+        // opMode.telemetry.addData("right speed: ", hardware.rightLaunchMotor.getPower());
+        telemetryM.debug("left vel: ", hardware.leftLaunchMotor.getVelocity());
+        telemetryM.debug("right vel: ", hardware.rightLaunchMotor.getVelocity());
 
         if (layout.launchReverse()) {
             spinReverse();
