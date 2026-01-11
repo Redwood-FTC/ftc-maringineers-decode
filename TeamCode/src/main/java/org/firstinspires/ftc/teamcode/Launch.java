@@ -159,11 +159,19 @@ public class Launch {
         hardware.rightLaunchMotor.setPower(FAST_SPEED);
     }
 
+    /**
+     * Slowly spins the motors
+     */
     public void spinSlow() {
         hardware.leftLaunchMotor.setPower(SLOW_SPEED);
         hardware.rightLaunchMotor.setPower(SLOW_SPEED);
     }
 
+    /**
+     * Spins the motors at a passed in speed value
+     *
+     * @param speed a passed in speed value
+     */
     public void spin(double speed) {
         hardware.leftLaunchMotor.setPower(speed);
         hardware.rightLaunchMotor.setPower(speed);
@@ -177,6 +185,9 @@ public class Launch {
         hardware.rightLaunchMotor.setPower(0.0);
     }
 
+    /**
+     * Spin backwards
+     */
     public void spinReverse() {
         hardware.leftLaunchMotor.setPower(-1.0);
         hardware.rightLaunchMotor.setPower(-1.0);

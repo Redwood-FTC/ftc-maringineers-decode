@@ -66,11 +66,17 @@ public class Control {
         started = true;
     }
 
+    /**
+     * Sets the menu objet to a new menu, sets runMenu to true
+     */
     public void runMenu() {
         menu = new Menu(layout, opMode, opMode.telemetry);
         runMenu = true;
     }
 
+    /**
+     * Sets runAuto to true and runMenu to false
+     */
     public void runAuto() {
         runAuto = true;
         runMenu = false;
@@ -83,6 +89,9 @@ public class Control {
         drive.stopRobot();
     }
 
+    /**
+     * Temporary dead reckoning algorithm to position and launch three balls
+     */
     private void auto() {
         // TEMPORARY
         // dead reckoning algorithm, to just position ourselves correctly and launch three balls

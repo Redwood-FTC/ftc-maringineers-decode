@@ -10,6 +10,9 @@ import org.firstinspires.ftc.teamcode.layout.Layout;
 
 import java.util.Arrays;
 
+/**
+ * Manages the position of the robot
+ */
 public class Menu {
     public enum Position {
         RED_FRONT,
@@ -27,10 +30,20 @@ public class Menu {
     private Position selected;
     private boolean pressed = false;
 
+    /**
+     * Sets the layout to the layout object
+     *
+     * @param layout    the layout object
+     * @param opMode    the opMode object
+     * @param telemetry the telemetry object
+     */
     public Menu(Layout layout, OpMode opMode, Telemetry telemetry) {
         this.layout = layout;
     }
 
+    /**
+     * Update position
+     */
     public void update() {
         if (layout.menuSelect()) {
             switch (menuPosition) {
@@ -66,6 +79,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Update telemetry with position
+     */
     private void updateTelemetry() {
         if (selected == null) {
             telemetry.addLine("dpad up and down to navigate, a to select.");
@@ -92,7 +108,9 @@ public class Menu {
         telemetry.update();
     }
 
-    // return Position if Position selected, else return null
+    /**
+     * return Position if Position selected, else return null
+     */
     public Position selected() {
         return selected;
     }

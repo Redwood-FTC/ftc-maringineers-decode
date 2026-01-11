@@ -68,8 +68,9 @@ public class Layout {
     }
 
     /**
+     * Sets launch power
      *
-     * @return
+     * @return the negative value of right stick x
      */
     public double launchPower() {
         return -gamepad1.right_stick_x;

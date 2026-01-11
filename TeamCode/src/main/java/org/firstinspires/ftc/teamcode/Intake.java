@@ -15,6 +15,7 @@ public class Intake {
     private Layout layout;
 
     private double INTAKE_SPEED = 1.0;
+    private boolean pressed = false;
 
     /**
      * Initialises the OpMode, Hardware, and Layout.
@@ -23,17 +24,15 @@ public class Intake {
      * @param hardware the Hardware object
      * @param layout   the Layout object
      */
-    public Intake(OpMode opMode, Hardware hardware, Layout layout) {
+    public void intake(OpMode opMode, Hardware hardware, Layout layout) {
         this.opMode = opMode;
         this.hardware = hardware;
         this.layout = layout;
     }
 
     /**
-     * Updates the intake mechanism.
+     * Manage intaking and outtaking.
      */
-    private boolean pressed = false;
-
     public void runGamepad() {
         if (layout.intakeForward() && !pressed) {
             pressed = true;
@@ -51,12 +50,15 @@ public class Intake {
     // TODO: warmUp mechanism
 
     /**
-     * Makes the intake servo spin.
+     * Intake artefacts.
      */
     public void in() {
         hardware.intakeServo.setPosition(0.0);
     }
 
+    /**
+     * Outtake artefacts
+     */
     public void out() {
         hardware.intakeServo.setPosition(1.0);
     }

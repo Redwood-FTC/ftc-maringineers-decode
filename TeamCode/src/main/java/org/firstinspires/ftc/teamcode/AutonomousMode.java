@@ -36,6 +36,9 @@ public class AutonomousMode extends OpMode {
         control.runAuto();
     }
 
+    /**
+     * Update control
+     */
     public void loop() {
         control.update();
     }
