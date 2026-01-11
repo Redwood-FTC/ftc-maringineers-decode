@@ -35,7 +35,8 @@ public class Limelight {
     }
 
     /**
-     * Updates the valid result based on what the limelight last saw.
+     * Updates the valid result based on what the limelight last saw. If it's valid, set the Pose3D
+     * pose and debug telemetry. If it's not, send 'no pose' to telemetry.
      */
     public void update() {
         LLResult result = hardware.limelight.getLatestResult();
@@ -73,14 +74,10 @@ public class Limelight {
     }
 
     /**
-     * returns whether result is valid.
+     * Returns validResult.
      *
-     * @return true if result is valid, false otherwise
+     * @return validResult
      */
-    public boolean resultValid() {
-        return resultValid;
-    }
-
     public LLResult result() {
         return validResult;
     }
