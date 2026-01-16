@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 // Reed said launch speed should be .5, go to midfield and launch from there
 
@@ -11,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  * Manages the robot's autonomous.
  */
 @Autonomous(name = "Autonomous Mode", group = "Auto")
-public class AutonomousMode extends OpMode {
+public class CloseAutonomous extends OpMode {
     private Control control;
 
     /**
