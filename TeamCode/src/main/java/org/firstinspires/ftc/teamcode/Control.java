@@ -127,6 +127,15 @@ public class Control {
     }
 
     /**
+     * If should is true, then moves away from the target. Then aims and shoots.
+     *
+     * @param should whether it should move towards the target
+     */
+    public void MovesAwayFromTarget(boolean should) {
+        // jlasdf
+    }
+
+    /**
      * Updates drive, telemetry, and the limelight.
      */
     public void update() {
@@ -134,7 +143,7 @@ public class Control {
             menu.update();
             return;
         }
-        // opMode.telemetry.addData("MENU: ", runMenu);
+        // opMode.telemetry.addData("MENU: ", runMenu);boolean
 
         if (runAuto) {
             auto();
@@ -181,7 +190,9 @@ public class Control {
     private void run() {
         drive.update();
         limelight.update();
+
         drive.gamepadDrive();
+
         launch.runGamepad();
         belt.runGamepad();
     }

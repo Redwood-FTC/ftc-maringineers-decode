@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 /**
  * Manages the robot's autonomous.
  */
-@Autonomous(name = "Autonomous Mode", group = "Auto")
+@Autonomous(name = "Far Autonomous", group = "Auto")
 public class FarAutonomous extends OpMode {
     private Control control;
 
@@ -39,6 +39,8 @@ public class FarAutonomous extends OpMode {
      */
     public void loop() {
         control.update();
+
+        control.movesAwa
     }
 
     /**

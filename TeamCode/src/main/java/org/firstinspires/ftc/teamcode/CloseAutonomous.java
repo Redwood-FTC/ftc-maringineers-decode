@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 /**
  * Manages the robot's autonomous.
  */
-@Autonomous(name = "Autonomous Mode", group = "Auto")
+@Autonomous(name = "Close Autonomous", group = "Auto")
 public class CloseAutonomous extends OpMode {
     private Control control;
 
