@@ -59,12 +59,30 @@ public class Launch {
             return;
         }
 
+        // LIGHTS:
+        // 4 directional ones, 1 good to go one
+        // 2 up to speed ones (3 for each side?)
+        // 2 ones for close and far distance
+
         if (layout.aim()) {
             spinSlow();
         } else if (layout.fire()) {
             spinFast();
         } else {
             stop();
+        }
+
+        // goal if 1350, so goes between 1340 and 1360
+        if (hardware.leftLaunchMotor.getVelocity() >= 1340) {
+            telemetryM.debug("left at speed");
+        } else {
+            telemetryM.debug("left not at speed");
+        }
+
+        if (hardware.rightLaunchMotor.getVelocity() >= 1340) {
+            telemetryM.debug("right at speed");
+        } else {
+            telemetryM.debug("right not at speed");
         }
 
         if (!firePressed) {
@@ -155,16 +173,20 @@ public class Launch {
      * Spins the launch servos.
      */
     public void spinFast() {
-        hardware.leftLaunchMotor.setPower(FAST_SPEED);
-        hardware.rightLaunchMotor.setPower(FAST_SPEED);
+        // hardware.leftLaunchMotor.setPower(FAST_SPEED);
+        // hardware.rightLaunchMotor.setPower(FAST_SPEED);
+        hardware.leftLaunchMotor.setVelocity(1350);
+        hardware.rightLaunchMotor.setVelocity(1350);
     }
 
     /**
      * Slowly spins the motors
      */
     public void spinSlow() {
-        hardware.leftLaunchMotor.setPower(SLOW_SPEED);
-        hardware.rightLaunchMotor.setPower(SLOW_SPEED);
+        // hardware.leftLaunchMotor.setPower(SLOW_SPEED);
+        // hardware.rightLaunchMotor.setPower(SLOW_SPEED);
+        hardware.leftLaunchMotor.setVelocity(1250);
+        hardware.rightLaunchMotor.setVelocity(1250);
     }
 
     /**

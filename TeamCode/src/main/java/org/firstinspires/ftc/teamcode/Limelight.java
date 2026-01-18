@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
+import org.firstinspires.ftc.robotcore.external.navigation.Position;
 
 /**
  * Controls the limelight.
@@ -49,13 +50,16 @@ public class Limelight {
         // telemetryM.debug(
         if (result.isValid()) {
             // telemetryM.debug("pose", result.getBotpose().toString());
-            telemetryM.debug("pose", result.getBotpose().toString());
+            Pose3D pose = result.getBotpose();
+            Position pos = pose.getPosition();
+            telemetryM.debug("pose", pose.toString());
+            telemetryM.debug("theoretical distance from goal", Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2)));
             telemetryM.debug("tx", result.getTx());
             telemetryM.debug("txnc", result.getTxNC());
             telemetryM.debug("ty", result.getTy());
             telemetryM.debug("tync", result.getTyNC());
+            // telemetryM.debug("rz", result.getRz());
 
-            Pose3D pose = result.getBotpose();
             // telemetryM.debug("", result.getBotpose().getOrientation().yaw);
             telemetryM.debug("yaw", pose.getOrientation().getYaw());
             telemetryM.debug("pitch", pose.getOrientation().getPitch());
@@ -63,10 +67,20 @@ public class Limelight {
 
             if (Math.abs(result.getTx()) < 4) {
                 telemetryM.debug("can shoot");
-                hardware.canShootLedServo.setPosition(1.0);
+
+                // if we're close, use one range
+                // if we're far, use another
+
+                // TODO: get the led working
+                hardware.canShootLed.setState(false);
+                // hardware.canShootLedServo.setPower(0);
+                // hardware.canShootLedServo.setPosition(1.0);
             } else {
                 telemetryM.debug("can't shoot");
-                hardware.canShootLedServo.setPosition(0.5);
+                hardware.canShootLed.setState(true);
+                // hardware.canShootLED.enable(false);
+                // hardware.canShootLedServo.setPower(0);
+                // hardware.canShootLedServo.setPosition(0.5);
             }
         } else {
             opMode.telemetry.addLine("no pose");

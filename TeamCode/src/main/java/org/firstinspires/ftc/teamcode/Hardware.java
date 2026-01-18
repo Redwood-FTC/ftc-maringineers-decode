@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.LED;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
@@ -38,7 +40,7 @@ public class Hardware {
     public Servo intakeServo;
 
     // actually leds
-    public Servo canShootLedServo;
+    public DigitalChannel canShootLed;
 
     public Limelight3A limelight;
 
@@ -56,6 +58,7 @@ public class Hardware {
         initEncoders();
         initMotors();
         initLimelight();
+        initDigitalDevices();
     }
 
     /**
@@ -65,14 +68,20 @@ public class Hardware {
         limelight = opMode.hardwareMap.get(Limelight3A.class, "limelight");
     }
 
+    private void initDigitalDevices() {
+        canShootLed = opMode.hardwareMap.get(DigitalChannel.class, "canShootLed");
+        canShootLed.setMode(DigitalChannel.Mode.OUTPUT);
+        canShootLed.setState(false);
+    }
+
     /**
      * Initialises the servos.
      */
     private void initServos() {
         // intakeServo = opMode.hardwareMap.get(Servo.class, "intakeServo");
-        canShootLedServo = opMode.hardwareMap.get(Servo.class, "canShootLedServo");
-        for (Servo servo : new Servo[]{canShootLedServo}) {
-            servo.setDirection(Servo.Direction.FORWARD);
+        // canShootLedServo = opMode.hardwareMap.get(CRServo.class, "canShootLedServo");
+        for (CRServo servo : new CRServo[]{}) {
+            servo.setDirection(CRServo.Direction.FORWARD);
         }
     }
 

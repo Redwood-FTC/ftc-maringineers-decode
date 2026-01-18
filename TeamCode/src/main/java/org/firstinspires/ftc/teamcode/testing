@@ -19,3 +19,23 @@ distance (in), tx, in/miss
 47, 8.0, in, a little close
 47, 6.7, both in and l
 
+LIMELIGHT POSITION X
+position, in/out
+-1.035, too close
+-.972, too close
+-.922, too close
+-.860, too close
+-.794, made it in, but bounced on edge
+-.733, full in
+-.758, in, bounced a little
+.749, in, bounced a little
+BAD DATA
+
+LIMELIGHT POSITION X
+position, in/out
+-.988, in but bounced
+-1.045, out
+-1.029, out
+-.971, out
+-.501, in, not too close for 1300
+
