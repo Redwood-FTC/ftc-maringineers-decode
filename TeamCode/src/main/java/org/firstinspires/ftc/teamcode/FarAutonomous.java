@@ -17,7 +17,7 @@ public class FarAutonomous extends OpMode {
      */
     public void init() {
         control = new Control(this);
-        control.runMenu();
+        control.setAuto(false);
     }
 
     /**
@@ -31,7 +31,7 @@ public class FarAutonomous extends OpMode {
      * Run autonomous.
      */
     public void start() {
-        control.runAuto();
+        control.start();
     }
 
     /**
@@ -39,8 +39,6 @@ public class FarAutonomous extends OpMode {
      */
     public void loop() {
         control.update();
-
-        control.movesAwa
     }
 
     /**

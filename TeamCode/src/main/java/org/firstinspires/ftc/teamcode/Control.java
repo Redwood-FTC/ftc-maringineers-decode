@@ -32,8 +32,8 @@ public class Control {
     private TelemetryManager telemetryM;
 
     private boolean started = false;
-    private boolean runMenu = false;
-    private boolean runAuto = false;
+    private boolean auto = false;
+    private boolean close;
 
     // TODO: probably have something like last year, with a Pickup mode,
     // for intaking, and a Launch mode, for which the front of the robot
@@ -67,19 +67,11 @@ public class Control {
     }
 
     /**
-     * Sets the menu objet to a new menu, sets runMenu to true
-     */
-    public void runMenu() {
-        menu = new Menu(layout, opMode, opMode.telemetry);
-        runMenu = true;
-    }
-
-    /**
      * Sets runAuto to true and runMenu to false
      */
-    public void runAuto() {
-        runAuto = true;
-        runMenu = false;
+    public void setAuto(boolean close) {
+        auto = true;
+        this.close = close;
     }
 
     /**
@@ -92,65 +84,21 @@ public class Control {
     /**
      * Temporary dead reckoning algorithm to position and launch three balls
      */
-    private void auto() {
-        // TEMPORARY
-        // dead reckoning algorithm, to just position ourselves correctly and launch three balls
-        switch (menu.selected()) {
-            case RED_FRONT:
-            case BLUE_FRONT:
-                // TODO: drive functions in drive, rather than setting powers here
-                // for front:move (forward?) for so long, fire
-                // if (opMode.time < 1) {
-                //     drive.setDrive(.25, 0, 0);
-                // } else if (opMode.time < 1.5) {
-                //     drive.setDrive(0, 0, 0);
-                //     launch.spinSlow();
-                // } else {
-                //     launch.spinSlow();
-                //     belt.runFull();
-                // }
-                break;
-            case RED_REAR:
-                // just immediately go?
-                // telemetry.addLine(" Selected RED_REAR");
-                // break;
-            case BLUE_REAR:
-                // if (opMode.time < .5) {
-                //     drive.setDrive(0, 0, 0);
-                //     launch.spinFast();
-                // } else {
-                //     launch.spinFast();
-                //     belt.runFull();
-                // }
-                break;
+    private void runAuto() {
+        if (!drive.driveAway(close)) {
+            return;
         }
-    }
 
-    /**
-     * If should is true, then moves away from the target. Then aims and shoots.
-     *
-     * @param should whether it should move towards the target
-     */
-    public void MovesAwayFromTarget(boolean should) {
-        // jlasdf
+        stop();
     }
 
     /**
      * Updates drive, telemetry, and the limelight.
      */
     public void update() {
-        if (runMenu) {
-            menu.update();
-            return;
-        }
-        // opMode.telemetry.addData("MENU: ", runMenu);boolean
-
-        if (runAuto) {
-            auto();
-            return;
-        }
-
-        if (started) {
+        if (started && auto) {
+            runAuto();
+        } else if (started) {
             run();
         }
 

@@ -70,19 +70,19 @@ public class Drive {
 
     private boolean aiming = false;
 
-    public boolean aimTarget() {
-        // TODO: store angle, and calculate power to go to that angle
-        aiming = true;
-        if (limelight.resultValid()) {
-            // if tx > 0, turn left, if < 0, turn right
-            // tx / 30
-            // anything < 30 will be a corresponding fraction, > 30 will just be full power
-            moveRobot(0, 0, limelight.result().getTx() / 30);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // public boolean aimTarget() {
+    //     // TODO: store angle, and calculate power to go to that angle
+    //     aiming = true;
+    //     if (limelight.resultValid()) {
+    //         // if tx > 0, turn left, if < 0, turn right
+    //         // tx / 30
+    //         // anything < 30 will be a corresponding fraction, > 30 will just be full power
+    //         moveRobot(0, 0, limelight.result().getTx() / 30);
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     /**
      * Sets TeleOP drive
@@ -102,6 +102,32 @@ public class Drive {
         moveRobot(layout.driveForwardAmount(),
                 layout.driveStrafeAmount(),
                 -layout.driveYawAmount());
+    }
+
+    private double driveAwayTimeStarted = -1;
+    public boolean driveAway(boolean close) {
+        if (driveAwayTimeStarted == -1) {
+            driveAwayTimeStarted = opMode.time;
+        }
+        // opMode.telemetry.addData("driveAwayTimeStarted", driveAwayTimeStarted);
+        // opMode.telemetry.addData("time", opMode.time);
+
+        if (close) {
+            if (opMode.time - driveAwayTimeStarted > 2) {
+                return true;
+            }
+            moveRobot(-.3, 0, 0);
+        } else {
+            if (opMode.time - driveAwayTimeStarted > .5) {
+                return true;
+            }
+            moveRobot(.3, 0, 0);
+        }
+
+        return false;
+        // if close, drive backwards, for 3 seconds
+        // if far, forward, .5s
+        // returns if finished
     }
 
     /**

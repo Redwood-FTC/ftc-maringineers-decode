@@ -17,7 +17,7 @@ public class CloseAutonomous extends OpMode {
      */
     public void init() {
         control = new Control(this);
-        control.runMenu();
+        control.setAuto(true);
     }
 
     /**
@@ -31,7 +31,7 @@ public class CloseAutonomous extends OpMode {
      * Run autonomous.
      */
     public void start() {
-        control.runAuto();
+        control.start();
     }
 
     /**
