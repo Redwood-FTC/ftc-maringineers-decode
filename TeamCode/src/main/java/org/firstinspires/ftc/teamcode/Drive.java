@@ -73,9 +73,11 @@ public class Drive {
     public boolean aimTarget() {
         // get tx from limelight, 10 means tilt with .15(?), |tx|<5 means
         // we're on target
-        if (!limelight.resultValid()) {
+        if (!limelight.foundTarget()) {
             moveRobot(0, 0, .15);
             return false;
+        } else {
+            
         }
 
         // return true;

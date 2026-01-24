@@ -64,6 +64,7 @@ public class Limelight {
             target = null;
             for (int i = 0; i < result.getFiducialResults().size(); ++i) {
                 target = result.getFiducialResults().get(i);
+                // red 24, blue 20
                 if (target.getFiducialId() != 24) {
                     continue;
                 }
@@ -111,6 +112,10 @@ public class Limelight {
     // negative is right
     public double angle_from_target() {
         return target.getTargetXDegrees();
+    }
+
+    public boolean foundTarget() {
+        return target == null;
     }
 
     public boolean resultValid() {

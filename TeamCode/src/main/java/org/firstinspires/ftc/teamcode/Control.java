@@ -69,9 +69,11 @@ public class Control {
     /**
      * Sets runAuto to true and runMenu to false
      */
-    public void setAuto(boolean close) {
+    private boolean red;
+    public void setAuto(boolean close, boolean red) {
         auto = true;
         this.close = close;
+        this.red = red;
     }
 
     /**
@@ -84,6 +86,7 @@ public class Control {
     /**
      * Temporary dead reckoning algorithm to position and launch three balls
      */
+    private double timeSpinStart = -1;
     private void runAuto() {
         if (!drive.driveAway(close)) {
             return;
@@ -94,6 +97,15 @@ public class Control {
         // }
 
         launch.spinSlow();
+        stop();
+
+        if (timeSpinStart == -1) {
+          timeSpinStart = opMode.time;
+        }
+
+        if (opMode.time - timeSpinStart < 1.5) {
+          return;
+        }
 
         belt.run(.6);
 

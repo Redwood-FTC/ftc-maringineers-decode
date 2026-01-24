@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 /**
  * Manages the robot's autonomous.
  */
-@Autonomous(name = "Far Autonomous", group = "Auto")
-public class FarAutonomous extends OpMode {
+@Autonomous(name = "Blue Close Autonomous", group = "Auto")
+public class BlueCloseAutonomous extends OpMode {
     private Control control;
 
     /**
@@ -17,7 +17,7 @@ public class FarAutonomous extends OpMode {
      */
     public void init() {
         control = new Control(this);
-        control.setAuto(false);
+        control.setAuto(true, false);
     }
 
     /**
