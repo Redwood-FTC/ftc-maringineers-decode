@@ -89,6 +89,14 @@ public class Control {
             return;
         }
 
+        // if (!drive.aimTarget()) {
+        //   return;
+        // }
+
+        launch.spinSlow();
+
+        belt.run(.6);
+
         stop();
     }
 

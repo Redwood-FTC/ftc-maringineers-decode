@@ -78,6 +78,10 @@ public class Belt {
         // }
     }
 
+    public void run(double speed) {
+      hardware.beltMotor.setPower(speed);
+    }
+
     /**
      * Set belt to BELT_SPEED power
      */

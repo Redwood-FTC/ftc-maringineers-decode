@@ -68,21 +68,19 @@ public class Drive {
     //     // follower.setTeleOpDrive(x, y, yaw, true);
     // }
 
-    private boolean aiming = false;
+    // private boolean aiming = false;
 
-    // public boolean aimTarget() {
-    //     // TODO: store angle, and calculate power to go to that angle
-    //     aiming = true;
-    //     if (limelight.resultValid()) {
-    //         // if tx > 0, turn left, if < 0, turn right
-    //         // tx / 30
-    //         // anything < 30 will be a corresponding fraction, > 30 will just be full power
-    //         moveRobot(0, 0, limelight.result().getTx() / 30);
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    public boolean aimTarget() {
+        // get tx from limelight, 10 means tilt with .15(?), |tx|<5 means
+        // we're on target
+        if (!limelight.resultValid()) {
+            moveRobot(0, 0, .15);
+            return false;
+        }
+
+        // return true;
+        return false;
+    }
 
     /**
      * Sets TeleOP drive
@@ -143,15 +141,15 @@ public class Drive {
         // or add another method, moveRobotDirectional, which also
         // takes a reverse parameter, and calls this
 
-        if (aiming) {
-            if (Math.abs(x + y + yaw) > .3) {
-                opMode.telemetry.addLine("not aiming");
-                aiming = false;
-            } else {
-                opMode.telemetry.addLine("aiming");
-                return;
-            }
-        }
+        // if (aiming) {
+        //     if (Math.abs(x + y + yaw) > .3) {
+        //         opMode.telemetry.addLine("not aiming");
+        //         aiming = false;
+        //     } else {
+        //         opMode.telemetry.addLine("aiming");
+        //         return;
+        //     }
+        // }
 
         x *= swapFront * drivePower;
         y *= swapFront * drivePower;
