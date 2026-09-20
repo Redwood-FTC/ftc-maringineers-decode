@@ -87,16 +87,22 @@ public class Control {
      * Temporary dead reckoning algorithm to position and launch three balls
      */
     private double timeSpinStart = -1;
+    private double speed = .6;
     private void runAuto() {
         if (!drive.driveAway(close)) {
             return;
         }
 
-        // if (!drive.aimTarget()) {
-        //   return;
-        // }
+        if (!close) {
+            if (!drive.aimTarget(red)) {
+              return;
+            }
 
-        launch.spinSlow();
+            // stop();
+            // return;
+        }
+
+        launch.spinSlower();
         stop();
 
         if (timeSpinStart == -1) {
@@ -107,7 +113,16 @@ public class Control {
           return;
         }
 
-        belt.run(.6);
+        if (opMode.time - timeSpinStart > 7) {
+            speed = .8;
+        }
+
+        if (Math.floor(opMode.time) % 4 == 0) {
+            belt.run(-.6);
+        } else {
+            belt.run(.6);
+        }
+
 
         stop();
     }
@@ -150,15 +165,14 @@ public class Control {
 
         telemetryM.update();
         tel.update();
+        limelight.update(red);
+        drive.update();
     }
 
     /**
      * Runs the robot functions
      */
     private void run() {
-        drive.update();
-        limelight.update();
-
         drive.gamepadDrive();
 
         launch.runGamepad();

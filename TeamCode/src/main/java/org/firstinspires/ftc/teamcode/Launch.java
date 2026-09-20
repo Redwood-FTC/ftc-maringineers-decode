@@ -185,8 +185,15 @@ public class Launch {
     public void spinSlow() {
         // hardware.leftLaunchMotor.setPower(SLOW_SPEED);
         // hardware.rightLaunchMotor.setPower(SLOW_SPEED);
-        hardware.leftLaunchMotor.setVelocity(1250);
-        hardware.rightLaunchMotor.setVelocity(1250);
+        hardware.leftLaunchMotor.setVelocity(1290);
+        hardware.rightLaunchMotor.setVelocity(1290);
+    }
+
+    // for auto
+    public void spinSlower() {
+        // hardware.leftLaunchMotor.setVelocity(1250);
+        // hardware.rightLaunchMotor.setVelocity(1270);
+        spinSlow();
     }
 
     /**

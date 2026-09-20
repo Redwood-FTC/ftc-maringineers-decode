@@ -41,7 +41,8 @@ public class Limelight {
      * Updates the valid result based on what the limelight last saw. If it's valid, set the Pose3D
      * pose and debug telemetry. If it's not, send 'no pose' to telemetry.
      */
-    public void update() {
+    public void update(boolean red) {
+        opMode.telemetry.addLine("updating limelight");
         LLResult result = hardware.limelight.getLatestResult();
         if (result != null && result.isValid()) {
             validResult = result;
@@ -52,6 +53,7 @@ public class Limelight {
 
         // telemetryM.debug(
         if (result.isValid()) {
+            opMode.telemetry.addLine("limelight found valid result");
             // telemetryM.debug("pose", result.getBotpose().toString());
             Pose3D pose = result.getBotpose();
             Position pos = pose.getPosition();
@@ -63,11 +65,17 @@ public class Limelight {
             // telemetryM.debug("tync", result.getTyNC());
             target = null;
             for (int i = 0; i < result.getFiducialResults().size(); ++i) {
-                target = result.getFiducialResults().get(i);
+                LLResultTypes.FiducialResult target = result.getFiducialResults().get(i);
                 // red 24, blue 20
-                if (target.getFiducialId() != 24) {
+                opMode.telemetry.addData("limelight red: ", red);
+                opMode.telemetry.addData("found id: ", target.getFiducialId());
+                int id = red ? 24 : 20;
+                if (target.getFiducialId() != id) {
+                    opMode.telemetry.addLine("found non-target apriltag");
                     continue;
                 }
+                this.target = target;
+                opMode.telemetry.addLine("found target apriltag");
                 telemetryM.debug("skew: ", target.getSkew());
                 telemetryM.debug("cameraPoseTargetSpace: ", target.getCameraPoseTargetSpace());
                 telemetryM.debug("robotPoseTargetSpace: ", target.getRobotPoseTargetSpace());
@@ -115,7 +123,7 @@ public class Limelight {
     }
 
     public boolean foundTarget() {
-        return target == null;
+        return target != null;
     }
 
     public boolean resultValid() {

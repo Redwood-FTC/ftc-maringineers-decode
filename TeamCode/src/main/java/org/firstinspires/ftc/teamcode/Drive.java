@@ -70,18 +70,37 @@ public class Drive {
 
     // private boolean aiming = false;
 
-    public boolean aimTarget() {
+    private boolean aimed = false;
+    public boolean aimTarget(boolean red) {
+        opMode.telemetry.addLine("aiming");
+        if (aimed) {
+            return true;
+        }
+
         // get tx from limelight, 10 means tilt with .15(?), |tx|<5 means
         // we're on target
         if (!limelight.foundTarget()) {
-            moveRobot(0, 0, .15);
-            return false;
+            opMode.telemetry.addLine("couldn't find target, turning until found");
+            moveRobot(0, 0, -.15 * (red ? -1 : 1));
+            aimed = false;
         } else {
-            
+            opMode.telemetry.addLine("found target");
+            double angle = limelight.angle_from_target();
+            if (angle > 2) {
+                opMode.telemetry.addLine("moving right");
+                moveRobot(0, 0, .15);
+                aimed = false;
+            } else if (angle < -2) {
+                opMode.telemetry.addLine("moving left");
+                moveRobot(0, 0, -.15);
+                aimed = false;
+            } else {
+                opMode.telemetry.addLine("aimed at target");
+                aimed = true;
+            }
         }
 
-        // return true;
-        return false;
+        return aimed;
     }
 
     /**
@@ -118,7 +137,7 @@ public class Drive {
             }
             moveRobot(-.3, 0, 0);
         } else {
-            if (opMode.time - driveAwayTimeStarted > .5) {
+            if (opMode.time - driveAwayTimeStarted > 3.5) {
                 return true;
             }
             moveRobot(.3, 0, 0);
